@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/set.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+    <base target="_blank"  />
+    <style>
+        body,ul,li,p {margin:0;padding: 0;}
+            /* Acquiescence link */
+        a:link,a:visited{text-decoration:none;color:#474747;}
+        a:active,a:hover{text-decoration:underline;color:#E14F00;}
+        a.white:link,a.white:visited{color:#fff;text-decoration:none;}
+        a.white:hover,a.white:active{color:#fff;text-decoration:underline;}
+
+        .ul2 {width:758px;float:left;}
+        .ul2 li {display:block;float:left;line-height:51px;height:51px;border-bottom:1px #efefef solid;}
+        .ul2 li img {float:left;width:34px;height:34px;margin:8px 0 0 9px;display:inline;}
+        .ul2 li em {float:left;font-size:14px;font-style:normal;margin-left:10px;width:187px;}
+        .ul2 li p {float:left;background:url("/image/set/i5.png") 0 19px no-repeat;font-size:14px;color:#656565;}
+        .ul2 li p span {margin-right:37px;float:left;display:inline;}
+        .ul2 li b {float:left;margin-left:171px;font-size:14px;color:#0f6bb1;font-weight:normal;width:60px;text-align:center;}
+    </style>
+</head>
+<body>
+<ul class="ul2">
+    <%thisfans.forEach(function(datas){%>
+    <li><img src="<%=datas.user_face%>" /><em><%=datas.user_name%></em><p><span style="margin-left:23px;">微博帐号绑定</span><a href="http://127.0.0.1:8080/list/<%=datas.pin%>/all/1">Ta的直播</a><span style="width:50px"><%=datas.praise%>赞</span></p><b isfans="<%=datas.isfans%>">未关注</b></li>
+    <%});%>
+    <div class="page" curpage="1">
+        <%- prev %>
+        <%- pageBar %>
+        <%- next %>
+    </div>
+</ul>
+</body>
+<script>
+    $(function(){
+        $(".ul2 > li").each(function(i){
+            if($(this).find("b").attr("isfans") == "true"){
+                $(this).find("b").text("互相关注");
+            }else{
+                $(this).find("b").text("未关注");
+            }
+        })
+    })
+</script>
+</html>

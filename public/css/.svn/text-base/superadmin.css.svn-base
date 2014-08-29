@@ -1,0 +1,48 @@
+/* CSS Document By yuqj@yesky.com */
+
+body .file .clear {width:0;height:0;overflow:hidden;clear:both;}
+
+/* 超级管理员 */
+
+/* HTML编辑框 */
+.con {width:927px;float:left;margin-left:37px;display:inline;}
+.htmlbox{width:905px;height:219px;border:1px solid #C3C3C3;float:left;resize:none;padding:10px;}
+.box1,.box2,.box3 {float:left;width:927px;}
+.box1 h3 {color:#212121;margin-bottom:10px;float:left;line-height:37px;}
+.box1 div {float:right;margin-top:10px;}
+.box1 p {line-height:33px;color:#1956aa;font-size:14px;float:left;cursor:pointer;}
+.box1 input {width:100px;height:33px;border:none;background:url("../image/superadmin/i1.png") 0 0 no-repeat;float:left;margin-left:41px;cursor:pointer;}
+.box1 a {width:179px;height:35px;border:1px #c3c3c3 solid;float:right;background:#fff;text-align:center;line-height:35px;cursor:pointer;}
+.box1 a:link {color:#000;}
+.box1 a:hover {color:#000;text-decoration:none;}
+
+.box2 {margin-top:7px;}
+.box2 h3 {color:#212121;float:left;line-height:32px;}
+.box2 li {margin:5px 0;}
+.file {float:left;margin-left:13px;display:inline;position:relative;}
+.file div {width:265px;height:30px;border:1px #c3c3c3 solid;float:left;background:#fff;overflow:hidden;line-height:30px;padding:0 10px;}
+.file p {width:100px;height:33px;border:none;background:url("../image/superadmin/i1.png") 0 0 no-repeat;float:left;margin-left:19px;cursor:pointer;text-align:center;line-height:33px;}
+#upfile {width:100px;height:33px;position:absolute;top:0;right:119px;alpha(opacity:0);opacity: 0;cursor:pointer;}
+#upload_file {width:100px;height:33px;position:absolute;top:0;right:0;alpha(opacity:0);opacity: 0;cursor:pointer;}
+
+.box3 h3 {color:#212121;margin:20px 0 10px 0;}
+.box3_con {width:927px;background:#f0f0f0;float:left;}
+.box3_con .find {float:left;margin:22px 0 0 20px;display:inline;}
+.box3_con .find span {float:left;line-height:32px;font-size:14px;color:#212121;}
+.box3_con .find input {width:247px;height:30px;border:1px #c3c3c3 solid;background:#fff;float:left;margin-left:17px;padding:0 10px;}
+.box3_con .find p {width:100px;height:33px;border:none;background:url("../image/superadmin/i1.png") 0 0 no-repeat;float:left;margin-left:41px;cursor:pointer;text-align:center;line-height:33px;}
+.box3_con ul {float:left;margin:10px 0 20px 20px;display:inline;width:907px;}
+.box3_con ul li {width:893px;height:39px;border-bottom:1px #d4d4d4 solid;}
+.box3_con ul li span {float:left;line-height:39px;}
+.box3_con ul li em {float:right;line-height:39px;font-style:normal;margin-right:30px;cursor:pointer;}
+
+.directbox {width:414px;height:177px;float:left;}
+.directbox h3 {float:left;font-size:14px;font-weight:bold;margin:20px 0 0 60px;display:inline;color:#505050;width:348px;}
+.directbox em {font-style:normal;float:right;margin:16px 19px 0 0;color:#11477a;cursor:pointer;}
+.directbox div {width:414px;float:left;margin-top:39px;}
+.directbox a {width:74px;height:32px;float:left;background:url("../image/superadmin/i2.png") 0 0 no-repeat;margin-left:104px;display:inline;cursor:pointer;}
+.directbox span {height:32px;line-height:32px;font-size:16px;font-weight:bold;color:#505050;float:left;margin-left:91px;cursor:pointer;}
+
+
+
+

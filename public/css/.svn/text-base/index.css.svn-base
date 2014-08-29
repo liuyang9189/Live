@@ -1,0 +1,125 @@
+/* CSS Document By yuqj@yesky.com */
+
+/* 热门推荐 */
+.hotbox{width:1000px;height:308px;float:left;}
+.hotpics{width:594px;height:308px;background:#000;float:left;}
+.hotnews{width:388px;background:url("../image/index/i2.png") no-repeat;padding-left:18px;float:right;}
+.hotnews ul{width:388px;padding-top:40px;float:left;}
+.hotnews li{width:388px;line-height:32px;font-size:16px;font-family:"microsoft yahei";border-bottom:1px solid #E2E2E2;float:left;}
+.hotnews li a:link,.hotnews li a:visited{text-decoration:none;color:#464D5B;}
+.hotnews li a:active,.hotnews li a:hover{text-decoration:underline;color:#E14F00;}
+
+/* 用户登录 */
+#login-wrap{width:386px;height:135px;float:left;position:relative;overflow:hidden;}
+#login-effect{width:386px;float:left;position:absolute;left:0px;top:-135px;}
+.login{width:296px;height:104px;float:left;background:url("../image/index/i9.png") no-repeat;padding:17px 0 0 72px;margin:14px 0 0 0;}
+.login div{float:left;margin-bottom:10px;}
+.login em{font-style:normal;margin-left:35px;}
+.login i{font-style:normal;margin:3px 0 0 6px;float:left;}
+.login strong{margin:4px 0 0 17px;*margin:0 0 0 12px;display:inline;float:left;}
+.login span{float:left;margin:-4px 0 0 10px;}
+.login font{float:left;margin:4px 0 0 10px;}
+.login .txt{width:151px;height:22px;border:none;float:left;padding-left:5px;margin-left:2px;display:inline;}
+.login .sub{width:82px;height:28px;background:url("../image/index/i10.png");border:0;float:left;cursor:pointer;}
+.login .sub.hover{background:url("../image/index/i10.png") 0 -28px}
+
+.mymsg{width:368px;height:107px;float:left;background:url("../image/index/i11.png") no-repeat;padding:14px 0 0 0;margin:14px 0 0 0;}
+.mymsg dl{width:auto;height:69px;float:left;padding-left:28px;}
+.mymsg div{float:left;}
+.mymsg img{width:56px;height:56px;float:left;}
+.mymsg strong{width:117px;padding:17px 0 0 11px;font-weight:normal;font-size:18px;font-family:"microsoft yahei";float:left;}
+.mymsg dt{font-size:18px;font-family:"microsoft yahei";float:left;padding:17px 0 0 31px;background:url("../image/index/i12.png") 0 20px no-repeat;color:#4B6893;}
+.mymsg dd{font-family:"sans-serif";float:left;padding-left:50px;}
+.mydirect,.adddirect{width:184px;height:38px;float:left;text-indent:-9999px;cursor:pointer;}
+.mydirect.hover{background:url("../image/index/i11.png") 0 -121px no-repeat;}
+.adddirect.hover{background:url("../image/index/i11.png") -184px -121px no-repeat;}
+
+/* 直播导航 */
+.menu{width:123px;float:left;}
+.menu ul{width:123px;float:left;}
+.menu li{width:123px;height:37px;line-height:37px;font-size:14px;font-weight:bold;text-align:center;background:#4079AE;margin-bottom:2px;float:left;}
+.menu a:link,.menu a:visited{width:123px;height:37px;text-decoration:none;color:#fff;float:left;background:#4079AE;}
+.menu a:active,.menu a:hover{width:123px;height:37px;text-decoration:none;color:#fff;float:left;background:#E55F32;}
+.menu p{width:123px;float:left;}
+.menu strong{width:92px;height:35px;line-height:35px;float:left;color:#555;font-size:14px; text-align:center;}
+.menu strong.now{background:url("../image/index/i17.png");color:#fff;}
+.menu strong a:link,.menu strong a:visited,.menu strong a:active,.menu strong a:hover{width:92px;height:35px;text-align:center;
+ text-decoration:none;color:#555;float:left;background:none;}
+
+/* 直播列表 */
+.list{width:840px;float:right;}
+.list h2{width:815px;padding-left:25px;color:#DC531C;height:46px;line-height:46px;font-size:16px;font-family:"microsoft yahei";background:url("../image/index/i3.png") repeat-x;float:left;}
+.news {width:822px;background:#fff;float:left;margin:0 0 0 10px;display:inline;margin-bottom:15px;}
+.news h4{width:800px;padding-left:22px;line-height:35px;font-weight:normal;float:left;color:#656565;}
+.news em{padding:0 128px 0 22px;background:url("../image/index/i4.png") left 11px no-repeat;float:left;font-style:normal;}
+.news i{float:left;font-style:normal;}
+.news div{width:800px;padding-left:22px;float:left;}
+.news span{width:312px;height:161px;float:left;overflow:hidden;text-align:center;}
+.news dl{width:450px;margin:0 0 0 14px;display:inline;float:left;font-family:"microsoft yahei";color:#656565;}
+.news dl dt{width:450px;font-size:18px;font-weight:bold;float:left;padding-bottom:14px;}
+.news dl dd{width:450px;font-size:16px;line-height:24px;float:left;height:100px;overflow:hidden;}
+.news dl strong{float:right;color:#697F90;clear:both;font-weight:100;font-size: 14px;}
+.news .interact{width:772px;height:36px;padding:0 25px;margin-top:10px;background:#E5EEF5;clear:both;position:relative;}
+.news .interact span{height:36px;line-height:36px;font-family:"microsoft yahei";font-size:14px;padding:0 0 0 31px;color:#4B6893;float:left;}
+.news .interact span.wz{background:url("../image/index/i8.png") left center no-repeat;}
+.news .interact span.yz{background:url("../image/index/i7.png") left center no-repeat;width:auto;}
+.news .interact .wb {width:auto;position:absolute;right:25px;height:20px;top:8px;background:url("../image/index/i20.png") 0 2px no-repeat;padding-left:34px;}
+.news .position_fx_con {width:114px;float:left;display:inline;padding:0;}
+.news .position_fx_con a {width:20px;height:20px;float:left;margin-right:15px;}
+.news .position_fx_con a:link,.position_fx_con a:visited {text-decoration:none;background:url("../image/mylive/wb.png") 0 0 no-repeat;}
+.news .position_fx_con a:active,.position_fx_con a:hover {text-decoration:none;background:url("../image/mylive/wb_hover.png") 0 0 no-repeat;}
+.news .position_fx_con div {float:left;width:0px;height:0px;overflow:hidden;padding:0;}
+.news .position_fx_con p {width:9px;height:17px;float:left;background:url("../image/index/i21.png") 0 0 no-repeat;cursor:pointer;margin-top:2px;}
+.news h3{width:840px;float:left;}
+.news h3 div{width:840px;float:left;}
+.news b{color:#F04510;font-weight:normal;}
+
+/*  用户列表 */
+.userlist{width:840px;float:right; font-size:14px;}
+.userlist strong{width:840px;float:left;}
+.userlist strong div{width:840px;float:left;}
+.userlist dl{width:840px;padding-top:18px;float:left;overflow:hidden;}
+.userlist dt,.userlist dt img{width:34px;height:34px;float:left;}
+.userlist dd{width:750px;padding-left:10px;float:left;height:34px;overflow:hidden;line-height:50px;font-size:14px;color:#555;}
+.userlist span{color:#F04510;}
+
+/* 首页登录发表直播盒子 */
+.directbox{width:494px;height:510px;float:left;color:#696969;}
+.directbox em{font-style:normal;font-size:12px;padding:15px 10px 0 0;float:right;clear:both;cursor:pointer;}
+.directbox h3{width:494px;float:left;text-align:center;font-size:20px;font-family:"microsoft yahei";font-weight:normal;}
+.directbox div{width:400px;float:left;padding:0 47px;}
+.directbox dl{width:400px;padding:10px 0;float:left;}
+.directbox dt{width:70px;font-size:14px;height:38px;line-height:38px;font-weight:bold;float:left;}
+.directbox dd{width:330px;float:left;}
+.directbox i{font-style:normal;height:40px;float:left;width:135px;cursor:pointer; font-size:12px;}
+.directbox span{width:136px;height:40px;line-height:40px;padding:0 0 0 10px;background:url("../image/index/i14.png");float:left;position:relative;font-size:14px;}
+.directbox ul{width:170px;padding:10px 0 10px 20px;border:1px solid #D5DBDE;background:#F7F7F7;float:left;position:absolute;margin:0;left:0px;top:39px;display:none;}
+.directbox li{width:85px;line-height:24px;float:left;font-size:12px;cursor:pointer;}
+.directbox li.hover{color:#105AA1;}
+.directbox dd .txt1{color:#696969;width:273px;padding:0 10px 0 10px;height:36px;*padding:12px 10px 0 10px;*height:24px;padding:12px 10px 0 10px\0;height:24px\0;float:left;border:1px solid #DADFE3;background:#fff;outline:none;resize:none;font-size:12px;font-family:sans-serif;}
+.directbox dd .txt2{color:#696969;width:273px;padding:10px 10px 0 10px;height:136px;float:left;border:1px solid #DADFE3;background:#fff;outline:none;resize:none;font-size:12px;}
+.directbox dl .sub{width:148px;height:42px;background:url("../image/index/i15.png");margin:0 0 0 130px;padding:0;border:none;cursor:pointer;}
+.directbox .subs{width:148px;height:42px;float:left;margin:0 0 0 130px;display:inline;background:url("../image/index/i15.png") no-repeat;border:none;}
+.directbox .subs.hover{background:url("../image/index/i15.png") 0 -42px no-repeat;}
+
+/* 列表分页 */
+.page {float:right;height:20px;margin-bottom:30px;}
+.page li{margin-top:5px;}
+.page li,.page a {width:30px;height:30px;float:left;margin-right:15px;display:inline;font-size:14px;text-align:center;line-height:30px;border-radius:3px;background:#90B7DA;font-weight:bold;color:#fff;}
+.page .show,.page .show a {background-color:#F37B1A;font-weight:bold;color:#fff;}
+
+/* 焦点图 */
+.slidesjs-pagination {display:none;}
+.hotpics {position:relative;}
+.jieshao {position:absolute;top:237px;left:0;width:564px;height:46px;background:#4a5260;background:rgba(0,0,0,0.5);filter:progid:dximagetransform.microsoft.gradient(startcolorstr="#66000000", endcolorstr="#66000000",gradienttype=0);z-index:1000;}
+.jieshao p {line-height:46px;color:#fff;font-size:18px;font-family:"microsoft yahei";text-indent:21px;width:490px;overflow:hidden;float:left;}
+.slidesjs-previous {position:absolute;top:251px;left:512px;z-index:9999;width:11px;height:19px;background:url("../image/index/i18.png") 0 0 no-repeat;text-indent:999px;overflow:hidden;}
+.slidesjs-next {position:absolute;top:251px;left:543px;z-index:9999;width:11px;height:19px;background:url("../image/index/i18.png") -11px 0 no-repeat;text-indent:999px;overflow:hidden;}
+.slidesjs-previous.hover {background:url("../image/index/i18.png") 0 -19px no-repeat;}
+.slidesjs-next.hover {background:url("../image/index/i18.png") -11px -19px no-repeat;}
+
+/* 消息列表 */
+.msglist{width:1000px;float:left;}
+.msglist dl{width:960px;border-bottom:1px solid #DCDCDC;float:left;font-size:14px;line-height:40px;padding:0 20px;}
+.msglist dt{float:left;}
+.msglist dd{float:right;}

@@ -1,0 +1,86 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/useradmin.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <a class="return" href="/superadmin.do">返回后台页面</a>
+        <div class="box1">
+            <div class="box1_top">
+                <h3>白名单管理：</h3>
+                <div>
+                    <input type="text" value="" id="box1_keywords"/>
+                    <p id="box1_find">搜索</p>
+                </div>
+            </div>
+            <ul class="box1_bottom">
+            </ul>
+        </div>
+        <div class="box2">
+            <div class="box2_top">
+                <h3>管理员授权：</h3>
+                <div>
+                    <input type="text" value="" id="box2_keywords"/>
+                    <p id="box2_find">搜索</p>
+                </div>
+            </div>
+            <ul class="box2_bottom">
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+<script>
+    $(function(){
+        $("#box1_find").click(function(){
+            if($("#box1_keywords").val() != ""){
+                $.getScript("http://127.0.0.1:8080/search_user.do?type=json&keywords="+$("#box1_keywords").val(),function(){
+                    var oHtml="";
+                    for(var i=0;i<data.searchuser.length;i++){
+                        if(data.searchuser[i].white == false){
+                            oHtml+="<li><p>"+data.searchuser[i].nickname+"</p><p>"+data.searchuser[i].email+"</p><p>"+data.searchuser[i].time+"</p><p>不是白名单用户</p><a href='http://127.0.0.1:8080/white.do?_id="+data.searchuser[i]._id+"&white="+data.searchuser[i].white+"' >添加白名单</a></li>"
+                        }else{
+                            oHtml+="<li><p>"+data.searchuser[i].nickname+"</p><p>"+data.searchuser[i].email+"</p><p>"+data.searchuser[i].time+"</p><p>是白名单用户</p><a href='http://127.0.0.1:8080/white.do?_id="+data.searchuser[i]._id+"&white="+data.searchuser[i].white+"'>取消白名单</a></li>"
+                        }
+                    }
+                    $(".box1_bottom").html(oHtml);
+                });
+            }else{
+                alert("搜索框不可为空");
+            }
+        })
+
+        $("#box2_find").click(function(){
+            if($("#box2_keywords").val() != ""){
+                $.getScript("http://127.0.0.1:8080/search_user.do?type=json&keywords="+$("#box2_keywords").val(),function(){
+                    var oHtml="";
+                    for(var i=0;i<data.searchuser.length;i++){
+                        if(data.searchuser[i].admin == false){
+                            oHtml+="<li><p>"+data.searchuser[i].nickname+"</p><p>"+data.searchuser[i].email+"</p><p>"+data.searchuser[i].time+"</p><p>不是管理员</p><a href='http://127.0.0.1:8080/adminaccredit.do?_id="+data.searchuser[i]._id+"&admin="+data.searchuser[i].admin+"' >授权</a></li>"
+                        }else{
+                            oHtml+="<li><p>"+data.searchuser[i].nickname+"</p><p>"+data.searchuser[i].email+"</p><p>"+data.searchuser[i].time+"</p><p>是管理员</p><a href='http://127.0.0.1:8080/adminaccredit.do?_id="+data.searchuser[i]._id+"&admin="+data.searchuser[i].admin+"'>取消授权</a></li>"
+                        }
+                    }
+                    $(".box2_bottom").html(oHtml);
+                });
+            }else{
+                alert("搜索框不可为空");
+            }
+        })
+    })
+</script>
+</body>
+</html>

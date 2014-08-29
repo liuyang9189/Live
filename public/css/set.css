@@ -1,0 +1,61 @@
+.personal_left {width:113px;float:left;margin:20px 0 0 11px;display:inline;}
+.personal_left p {width:113px;height:35px;text-align:center;line-height:35px;font-size:14px;font-weight:bold;margin-bottom:10px;color:#555;cursor:pointer;}
+.personal_left p.hover {background:url("../image/set/i1.png") 0 0 no-repeat;color:#fff;}
+
+.pag {float:left;margin-top:20px;width:876px;}
+.pag li {display:none;}
+.pag li.show {display:block;}
+.set {width:756px;height:286px;float:left;margin-left:61px;display:inline;background:url("../image/set/i2.png") 0 0 no-repeat;}
+.set_left {width:350px;float:left;margin:41px 0 0 86px;display:inline;}
+.set_left dl {float:left;}
+.set_left dt {float:left;width:56px;text-align:right;line-height:24px;font-size:14px;color:#dd5428;}
+.set_left dd {float:left;margin-left:24px;line-height:24px;font-size:14px;color:#494949;}
+.set_left dd input {width:149px;height:22px;border:1px #f6d8c3 solid;background:#fff;overflow:hidden;padding:0 5px;}
+.set_left p {width:269px;float:right;line-height:18px;margin-top:4px;color:#afafaf;font-size:12px;}
+.set_left .sex1 {width:12px;margin:1px 13px 0 0;float:left;}
+.set_left .sex2 {width:12px;margin:1px 13px 0 23px;float:left;}
+
+.set_right {width:160px;float:right;margin:42px 89px 0 0;}
+.set_right img {width:160px;height:160px;float:left;}
+.set_right p {width:154px;height:28px;background:url("../image/set/i3.png") 0 0 no-repeat;float:left;margin:9px 0 0 3px;display:inline;cursor:pointer;}
+.xg {width:183px;height:52px;float:left;background:url("../image/set/i4.png") 0 0 no-repeat;border:none;margin:38px 0 59px 349px;display:inline;cursor:pointer;}
+
+.relation_top {float:left;margin-left:48px;display:inline;}
+.relation_top p {width:81px;height:29px;float:left;font-size:14px;font-weight:bold;color:#828282;text-align:center;line-height:29px;cursor:pointer;}
+.relation_top p.hover {background:#fff;color:#fd7100;}
+
+.relation_bottom {width:805px;background:#fff;margin-left:48px;display:inline;float:left;}
+.relation_bottom ul {width:758px;float:left;padding:16px 25px 28px 22px;display:none;}
+.relation_bottom ul.show {display:block;}
+.relation_bottom li {display:block;float:left;line-height:51px;height:51px;border-bottom:1px #efefef solid;}
+.relation_bottom li img {float:left;width:34px;height:34px;margin:8px 0 0 9px;display:inline;}
+.relation_bottom li em {float:left;font-size:14px;font-style:normal;margin-left:10px;width:187px;}
+.relation_bottom li p {float:left;background:url("../image/set/i5.png") 0 19px no-repeat;font-size:14px;color:#656565;}
+.relation_bottom li p span {margin-right:37px;float:left;display:inline;}
+.relation_bottom li b {float:left;margin-left:171px;font-size:14px;color:#0f6bb1;font-weight:normal;width:60px;text-align:center;}
+
+.relation_bottom iframe {display:none;}
+.relation_bottom iframe.show {display:block;}
+
+.directbox {width:494px;height:188px;float:left;}
+.directbox em {font-style:normal;float:right;margin:16px 19px 0 0;color:#11477a;cursor:pointer;}
+.directbox h3 {font-size:14px;margin:32px 0 0 36px;float:left;display:inline;font-weight:normal;color:#393939;}
+.directbox  #upfile {width:74px;height:32px;alpha(opacity:0);opacity: 0;position:absolute;top:0;left:16px;cursor:pointer;}
+.mn_file {float:left;width:450px;margin:13px 0 0 34px;display:inline;position:relative;}
+.directbox .file_text {width:240px;height:30px;border:1px #dadfe3 solid;float:left;padding:0 5px;}
+.mn_file .ll {background:url("../image/edit/i21.png") 0 0 no-repeat;width:74px;height:32px;float:left;margin-left:10px;}
+.mn_file span {background:url("../image/edit/i22.png") 0 0 no-repeat;width:74px;height:32px;float:left;margin-left:10px;}
+.mn_file #upload_file {width:74px;height:32px;border:none;position:absolute;top:0;right:10px;cursor:pointer;alpha(opacity:0);opacity: 0;}
+.mn_file .mn_file_t {float:left;color:#7c7c7c;width:200px;margin-top:11px;}
+
+
+
+
+/* 列表分页 */
+.page {float:right;height:20px;margin:10px 0 30px 0;}
+.ul1 .page li,.ul1 .page a,.ul2 .page li,.ul2 .page a {width:30px;height:30px;float:left;margin-right:15px;display:inline;font-size:14px;text-align:center;line-height:30px;border-radius:3px;background:#90B7DA;font-weight:bold;color:#fff;}
+.page .show,.page .show a {background-color:#F37B1A;font-weight:bold;color:#fff;}
+
+
+
+

@@ -1,0 +1,151 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/login.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="login">
+            <a href="###"><img src="../image/login/big-logo.png" style="margin-top:112px;float:left;"/></a>
+            <div class="login_right" id="box1">
+                <p class="login_title">欢迎注册直播台</p>
+                <div class="register_con">
+                    <ul>
+                        <li><span>注册邮箱</span><input type="text" name="email" value="" id="user_email"/><b style="line-height:24px;">忘记密码时，可凭安全邮箱索取密码</b></li>
+                        <li><span>注册密码</span><input type="password" name="password" value="" id="password"/><b>密码长度为6-20位,包含字母、数字和特殊<br />符号的一种以上，区分字母大小写</b></li>
+                        <li style="margin-bottom:34px;"><span>确认密码</span><input type="password" name="affirmpassword" value="" id="affirmpassword"/></li>
+                        <li style="line-height: 24px;"><span style="color:#9f786b;">验证码</span><input type="text" value="" style="width:83px;"/><input type="checkbox" checked="checked" name="treaty" style="width:13px;height:13px;margin:6px 8px 0 38px;"/><a href="http://passport.yesky.com/jsp/newyesky/agreement.jsp">我已阅读并接受《天极注册协议》</a></li>
+                    </ul>
+
+                </div>
+                <p class="wblogin"><a href="###"><span></span>使用微博帐号登录</a></p>
+                <div class="zc"></div>
+            </div>
+            <div id="box2">
+                <div class="register_right">
+                    <div class="ncxb">
+
+                        <form method="post" action="http://127.0.0.1:8080/admin/register" id="qr">
+                            <div class="nc">
+                                <span>昵 称</span><input type="text" name="nickname" value="" id="nickname"/>
+                                <p>3-16个字符以内(只限数字、英文、字符、点减号或下划线)，只能以数字或字母开头和结尾</p>
+                            </div>
+                            <div class="xb">
+                                <span>性 别</span><input type="radio" checked="checked" name="Sex" value="1"/>男<input type="radio" name="Sex" value="2"/>女
+                            </div>
+                            <input type="hidden" name="email" value="" id="email"/>
+                            <input type="hidden" name="sex" value="1" id="sex"/>
+                            <input type="hidden" name="pin" value="" id="pin"/>
+                            <input type="hidden" name="face" value="http://www.tuji.me/images/other/user.png" id="face"/>
+                            <input type="hidden" name="password" value="" id="pass"/>
+                        </form>
+                        <!--<a id="aa">aaaaaaaaaa</a>-->
+                    </div>
+                    <div class="face">
+                        <img src="../image/login/face.png" id="img"/>
+                        <iframe id="exec_target" name="exec_target" style="width:0px;height:0px;display:none;"></iframe>
+                        <form id="upimgs"  action="/admin/imageUpload" method="post" enctype="multipart/form-data" target="exec_target">
+                            <input name="image" type="file" id="upfile" style="width:300px;">
+                            <input type="hidden" value="1" name="type" />
+                            <input type="button" id="upload_file" value="确定">
+                        </form>
+                    </div>
+                </div>
+                <div class="tgwc"><span>跳过此步骤</span><p></p></div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+</body>
+<script>
+    $(function(){
+    $(".zc").hover(function(){
+        $(this).addClass("show");
+    },function(){
+        $(this).removeClass("show");
+    });
+    $(".tgwc span").hover(function(){
+        $(this).css({"color":"#146cb2"});
+    },function(){
+        $(this).css({"color":"#515151"});
+    })
+    $(".tgwc p").hover(function(){
+        $(this).addClass("show");
+    },function(){
+        $(this).removeClass("show");
+    })
+    /*$("#aa").click(function(){
+        alert($(':radio[name="sex"]:checked').val())
+    })*/
+    $(".zc").click(function(){
+        var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+        if(!reg.test($("#user_email").val())){
+            alert("邮箱格式不对")
+        }
+        else if($("#password").val()=="" || $("#affirmpassword").val() == ""){
+            alert("请输入密码")
+        }else{
+            $.getScript("/admin/verification?email="+$("#user_email").val().toLowerCase(),function(){
+                if(aaa == true){
+                    alert("用户邮箱以存在");
+                }else{
+                    $("#box1").hide();
+                    $("#box2").show().addClass("flipInY");
+                    setTimeout(function(){$("#box2").removeClass("flipInY")},1000);
+                    var str=$("#user_email").val();
+                    var _index=str.lastIndexOf("\@");
+                    var oName = str.substring(0,_index);
+                    var oNickName =oName.toLowerCase();
+                    $("#nickname").val(oNickName);
+                    $("#email").val($("#user_email").val());
+                    $("#pin").val(oNickName);
+                    $("#pass").val($("#affirmpassword").val());
+                }
+            })
+        }
+    })
+
+
+
+    updateImages()//上传图片
+    function updateImages(){
+        //上传执行数据相关
+        $("#upload_file").click(function(){
+            var objFile=document.getElementById("upfile")
+            if($("#upfile").val()!= "" && $("#feedback img").length<=2){
+                $("#upimgs").submit();
+                objFile.outerHTML=objFile.outerHTML.replace(/(value=\").+\"/i,"$1\"");
+            }else if($("#upfile").val()== ""){
+                alert("请选择图片!");
+                return
+            }
+        });
+        $("#exec_target").load(function(){
+            var oImg = $(window.frames["exec_target"].document.body).find("span").html();
+            var re=/(.+)(\..+)/;
+            var str=oImg.match(re);
+            var oSrc=str[1] +"160x160"+str[2];
+            $("#img").attr("src",oSrc);
+            $("#face").val("http://127.0.0.1:8080"+oSrc);
+        });
+    }
+    $(".tgwc span,.tgwc p").click(function(){
+        $("#sex").val($(':radio[name="Sex"]:checked').val());
+        $("#qr").submit();
+    })
+})
+</script>
+</html>

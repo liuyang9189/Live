@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/login.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="login">
+            <a href="###"><img src="../image/login/big-logo.png" style="margin-top:112px;float:left;"/></a>
+            <div class="login_right">
+                <p class="login_title">登录直播台</p>
+                <div class="login_con">
+                    <form method="post" action="http://127.0.0.1:8080/admin/login" id="box1">
+                        <ul>
+                            <li><span>邮　箱</span><input type="text" name="email" value="" id="email"/></li>
+                            <li style="margin-bottom:34px;"><span>密　码</span><input type="password" name="password" value=""/><a href="###">忘记密码？</a></li>
+                            <li><span style="color:#9f786b;">验证码</span><input type="text" value="" style="width:83px;"/></li>
+                        </ul>
+                    </form>
+                </div>
+                <p class="wblogin"><a href="###"><span></span>使用微博帐号登录</a></p>
+                <div class="dl"></div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+</body>
+<script>
+$(function(){
+    $(".dl").hover(function(){
+        $(this).addClass("show");
+    },function(){
+        $(this).removeClass("show");
+    });
+    $(".dl").click(function(){
+        var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+        if($("#email").val() == ""){
+            alert("邮箱不可为空")
+        }else if(!reg.test($("#email").val())){
+            alert("邮箱格式不对")
+        }else{
+            $("#box1").submit();
+        }
+    })
+})
+</script>
+</html>

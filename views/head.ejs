@@ -1,0 +1,14 @@
+<div id="head">
+    <p><a href="http://127.0.0.1:8080/" /><img src="http://127.0.0.1:8080/image/index/logo.png" alt="直播台" /></a><strong><a href="/" class="white">首页</a></strong></p>
+    <div class="topmymsg">
+        <% if(user){ %>
+        <img src="<%= user.face %>" alt="<%= user.nickname %>" /><b><%= user.nickname %></b><a href="http://127.0.0.1:8080/set">设置</a><a href="http://127.0.0.1:8080/message.do">消息</a><a href="/logout.do">退出</a>
+        <% }else{%>
+        <a href="http://127.0.0.1:8080/admin/">登录</a> <a href="http://127.0.0.1:8080/register/">注册</a>
+        <% }%>
+    </div>
+    <form action="http://127.0.0.1:8080/search.do" method="get" id="topsearch">
+        <input type="text" name="keywords" value="" id="topsv" />
+        <input type="submit" value="" id="topss">
+    </form>
+</div>

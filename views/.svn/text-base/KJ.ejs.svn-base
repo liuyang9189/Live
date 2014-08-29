@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/index.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+    <base target="_blank"  />
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        正文内容
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+<!--<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>-->
+</body>
+</html>

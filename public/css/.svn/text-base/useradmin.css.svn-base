@@ -1,0 +1,40 @@
+.return {width:179px;height:35px;border:1px #c3c3c3 solid;float:right;background:#fff;text-align:center;line-height:35px;cursor:pointer;margin-bottom:50px;}
+#main a:link {color:#000;}
+#main a:hover {color:#000;text-decoration:none;}
+
+
+.box1 {float:left;width:1000px;}
+.box1_top {float:left;width:1000px;}
+.box1_top h3 {float:left;}
+.box1_top div {float:right;width:225px;}
+.box1_top div input {float:left;width:124px;height:23px;padding:0 10px;}
+.box1_top div p {float:left;width:75px;height:25px;border:1px #797979 solid;text-align:center;line-height:25px;background:#fff;cursor:pointer;}
+.box1_bottom {width:938px;float:left;border:1px #797979 solid;margin-top:15px;padding:30px;background:#fff;}
+.box1_bottom li {float:left;border-bottom:1px #ccc solid;padding-bottom:20px;margin-bottom:10px;font-size:14px;}
+.box1_bottom li p {float:left;width:160px;text-align:center;margin:0 10px;height:30px;line-height:30px;}
+.box1_bottom li a {float:left;width:160px;text-align:center;margin:0 10px;border:1px #000 solid;height:30px;line-height:30px;cursor:pointer;}
+
+.box2 {float:left;width:1000px;margin-top:50px;}
+.box2_top {float:left;width:1000px;}
+.box2_top h3 {float:left;}
+.box2_top div {float:right;width:225px;}
+.box2_top div input {float:left;width:124px;height:23px;padding:0 10px;}
+.box2_top div p {float:left;width:75px;height:25px;border:1px #797979 solid;text-align:center;line-height:25px;background:#fff;cursor:pointer;}
+.box2_bottom {width:938px;float:left;border:1px #797979 solid;margin-top:15px;padding:30px;background:#fff;}
+.box2_bottom li {float:left;border-bottom:1px #ccc solid;padding-bottom:20px;margin-bottom:10px;font-size:14px;}
+.box2_bottom li p {float:left;width:160px;text-align:center;margin:0 10px;height:30px;line-height:30px;}
+.box2_bottom li a {float:left;width:160px;text-align:center;margin:0 10px;border:1px #000 solid;height:30px;line-height:30px;cursor:pointer;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

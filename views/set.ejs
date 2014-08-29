@@ -1,0 +1,259 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/set.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+    <base target="_blank"  />
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="personal_left">
+            <p class="hover">个人设置</p>
+            <p>绑定账户</p>
+            <p>好友管理</p>
+        </div>
+        <ul class="pag">
+            <li class="show">
+                <div class="set">
+                    <div class="set_left">
+                        <dl>
+                            <dt>昵称</dt>
+                            <dd><input type="text" value="<%=thisuser.nickname%>" name="nickname" class="nickname"/></dd>
+                            <input type="hidden" value="<%=thisuser.nickname%>" class="oldNickname" />
+                        </dl>
+                        <p>3-16个字符以内(只限数字、英文、字符、点减号或下划线)，只能以数字或字母开头和结尾</p>
+                        <dl style="margin-top:10px;" class="sex" sx="<%=thisuser.sex%>">
+                            <dt>性别</dt>
+                            <dd><input type="radio" value="1" name="sex" class="sex1"/>男</dd>
+                            <dd><input type="radio" value="2" name="sex" class="sex2"/>女</dd>
+                            <input type="hidden" value="<%=thisuser.sex%>" name="SEX" id="SEX"/>
+                        </dl>
+                        <dl style="margin-top:17px;">
+                            <dt>修改密码</dt>
+                            <dd><input type="password" value="" name="password1" class="password1"/></dd>
+                        </dl>
+                        <dl style="margin-top:21px;">
+                            <dt>重复密码</dt>
+                            <dd><input type="password" value="" name="password2" class="password2"/></dd>
+                        </dl>
+                    </div>
+                    <div class="set_right">
+                        <img src="<%=thisuser.face%>" id="img" url="<%=thisuser.face%>"/>
+                        <p></p>
+                    </div>
+                </div>
+                <input type="submit" class="xg" value=""/>
+            </li>
+            <li>未开启绑定账户</li>
+            <li>
+                <div class="relation_top">
+                    <p class="hover">关注</p>
+                    <p>粉丝</p>
+                </div>
+                <div class="relation_bottom">
+                    <iframe src="/set_attention/1" width="758px" height="424px" style="border:none;margin-left:22px;" class="show"></iframe>
+                    <iframe src="/set_fans/1" width="758px" height="424px" style="border:none;margin-left:22px;"></iframe>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+
+<div id="directwrap">
+    <div id="directbg">
+        <div class="directbox">
+            <em>取消</em>
+            <h3>选择你要上传的图片</h3>
+            <div class="mn_file">
+                <input type="text" value="" class="file_text"/>
+                <p class="ll"></p>
+                <span></span>
+                <iframe id="exec_target" name="exec_target" style="width:0px;height:0px;display:none;"></iframe>
+                <form id="upimgs"  action="/admin/imageUpload" method="post" enctype="multipart/form-data" target="exec_target">
+                    <input name="image" type="file" id="upfile" style="width:300px;float:left;margin-left:20px;display:inline;">
+                    <input type="hidden" value="2" name="type" />
+                    <input type="button" id="upload_file" value="确定" style="float:right;margin-right:20px;"/>
+                </form>
+                <p class="mn_file_t">支持JPG、PNG、GIF，大小不超过50M</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+$(function(){
+    alertShow($(".set_right p"),$(".directbox em"),$("#directwrap"));
+    /*切换*/
+    $(".personal_left p").click(function(){
+        var index = $(".personal_left p").index(this);
+        $(this).addClass("hover").siblings().removeClass("hover");
+        $(".pag > li").eq(index).show().siblings().hide();
+    })
+    $(".relation_top p").click(function(){
+        var index = $(".relation_top p").index(this);
+        $(this).addClass("hover").siblings().removeClass("hover");
+        $(".relation_bottom iframe").eq(index).addClass("show").siblings().removeClass("show");
+    })
+
+    /** 个人修改 **/
+    $(".xg").click(function(){
+        /*nickname*/
+        var oldNickname = $(".oldNickname").val();
+        var newNickname = $(".nickname").val();
+        /*sex*/
+        var oldSex = $(".sex").attr("sx");
+        var newSex = $("#SEX").val();
+        /*password*/
+        var oPassword1 = $(".password1").val();
+        var oPassword2 = $(".password2").val();
+        /*face*/
+        var oldFace = $("#img").attr("url");
+        var newFace = $("#img").attr("src");
+        var pattern=/^\S+$/gi;
+        if(pattern.test(newNickname)){}else{alert("昵称不可为空");}
+        if(oldNickname != newNickname && newNickname != "" && pattern.test(newNickname)){//数据库中昵称与当前昵称不对应，执行修改昵称接口。（修改昵称，性别，密码，头像四种情况）
+            $.getScript("/setnickname?nickname="+newNickname,function(){
+                if(oldSex != newSex){//数据库中性别与当前性别不对应，执行修改性别接口。否则跳转页面。
+                    $.getScript("/setsex?sex="+newSex,function(){
+                        if(oPassword1 != "" && oPassword2 != "" && oPassword1 == oPassword2 && pattern.test(oPassword2)){//修改密码与重复密码不为空，并且相等，那么执行修改密码接口。否则跳转页面。
+                            $.getScript("/setpassword?password="+oPassword2,function(){
+                                if(oldFace != newFace){//数据库中头像与当前头像不对应，执行修改头像接口。否则跳转页面。
+                                    $.getScript("/setface?face="+newFace,function(){
+                                        alert("修改成功");
+                                        href();
+                                    })
+                                }else{
+                                    alert("修改成功");
+                                    href();
+                                }
+                            })
+                        }else if(oldFace != newFace){
+                            $.getScript("/setface?face="+newFace,function(){
+                                alert("修改成功");
+                                href();
+                            })
+                        }else{
+                            alert("修改成功");
+                            href();
+                        }
+                    })
+                }else if(oPassword1 != "" && oPassword2 != "" && oPassword1 == oPassword2 && pattern.test(oPassword2)){
+                    $.getScript("/setpassword?password="+oPassword2,function(){
+                        alert("修改成功");
+                        href();
+                    })
+                }else if(oldFace != newFace){
+                    $.getScript("/setface?face="+newFace,function(){
+                        alert("修改成功");
+                        href();
+                    })
+                }else{
+                    alert("修改成功");
+                    href();
+                }
+            })
+        }else if(oldSex != newSex){//数据库中性别与当前性别不对应，执行修改性别接口。（修改性别，密码，头像三种情况）
+            $.getScript("/setsex?sex="+newSex,function(){
+                if(oPassword1 != "" && oPassword2 != "" && oPassword1 == oPassword2 && pattern.test(oPassword2)){//修改密码与重复密码不为空，并且相等，那么执行修改密码接口。否则跳转页面。
+                    $.getScript("/setpassword?password="+oPassword2,function(){
+                        if(oldFace != newFace){//数据库中头像与当前头像不对应，执行修改头像接口。否则跳转页面。
+                            $.getScript("/setface?face="+newFace,function(){
+                                alert("修改成功");
+                                href();
+                            })
+                        }else{
+                            alert("修改成功");
+                            href();
+                        }
+                    })
+                }else if(oldFace != newFace){//数据库中头像与当前头像不对应，执行修改头像接口。否则跳转页面。
+                    $.getScript("/setface?face="+newFace,function(){
+                        alert("修改成功");
+                        href();
+                    })
+                }else{
+                    alert("修改成功");
+                    href();
+                }
+            })
+        }else if(oPassword1 != "" && oPassword2 != "" && oPassword1 == oPassword2 && pattern.test(oPassword2)){//（修改密码，头像两种情况）
+            $.getScript("/setpassword?password="+oPassword2,function(){
+                if(oldFace != newFace){//数据库中头像与当前头像不对应，执行修改头像接口。否则跳转页面。
+                    $.getScript("/setface?face="+newFace,function(){
+                        alert("修改成功");
+                        href();
+                    })
+                }else{
+                    alert("修改成功");
+                    href();
+                }
+            })
+        }else if(oldFace != newFace){
+            $.getScript("/setface?face="+newFace,function(){
+                alert("修改成功");
+                href();
+            })
+        }
+    })
+
+
+
+
+
+    /* 选择性别 */
+    $(".sex input").click(function(){
+        $("#SEX").val($(this).attr("value"));
+    })
+
+    sex();//页面加载完成判断用户性别
+    function sex(){
+        var oSex = $(".sex").attr("sx");
+        if(oSex == "1"){
+            $(".sex1").attr("checked","checked");
+        }else{
+            $(".sex2").attr("checked","checked");
+        }
+    }
+
+    updateImages()//上传图片
+    function updateImages(){
+        $("#upfile").change(function(){
+            $(".file_text").val($("#upfile").val());
+        });
+        //上传执行数据相关
+        $("#upload_file").click(function(){
+            var objFile=document.getElementById("upfile")
+            if($("#upfile").val()!= "" && $("#feedback img").length<=2){
+                $("#upimgs").submit();
+                objFile.outerHTML=objFile.outerHTML.replace(/(value=\").+\"/i,"$1\"");
+            }else if($("#upfile").val()== ""){
+                alert("请选择图片!");
+                return
+            }
+        });
+        $("#exec_target").load(function(){
+            var oImg = $(window.frames["exec_target"].document.body).find("span").html();
+            var re=/(.+)(\..+)/;
+            var str=oImg.match(re);
+            var oSrc=str[1] +"160x160"+str[2];
+            $("#img").attr("src","http://127.0.0.1:8080"+oSrc);
+        });
+    }
+    function href(){
+        location.href = "http://127.0.0.1:8080/set";
+    }
+})
+</script>
+</html>

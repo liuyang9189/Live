@@ -1,0 +1,3 @@
+var exit = (currentLoanValue-currentLoanValue*0.99).toFixed(2);
+			var dqtb = parseFloat(currentLoanValue)+parseFloat(availableBidAmount);
+			$(".pop_con2 li:eq(4) b").html((dqtb-exit).toFixed(2));

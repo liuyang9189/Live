@@ -1,0 +1,175 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/index.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="container">
+            <div class="menu">
+                <ul>
+                    <li><a href="/q/1/">群乐频道</a></li>
+                    <li><a href="/pc/1/">笔记本/平板</a></li>
+                    <li><a href="/mobile/1/">移动互联</a></li>
+                    <li><a href="/cpu/1/">配件/显示器</a></li>
+                    <li><a href="/enterprise/1/">IT新闻</a></li>
+                    <li><a href="/digital/1/">数码影像</a></li>
+                    <li><a href="/gamelive/1/">游戏live秀</a></li>
+                    <li><a href="/hardware/1/">新品秀</a></li>
+                    <li><a href="/dh/1/">数字家电</a></li>
+                    <li><a href="/diy/1/">外设/深港</a></li>
+                </ul>
+            </div>
+            <div class="list">
+                <h2>最新直播</h2>
+                <%newdirects.forEach(function(direct){%>
+                <div class="news">
+                    <h4><em>正在直播</em><i>开始时间  <%=:direct.start_time | format:"yyyy-MM-dd"%></i></h4>
+                    <div>
+                        <span><a href="http://127.0.0.1:8080/<%=direct.mark%>/<%=direct._id%>.html"><img src="http://127.0.0.1:8080/image/index/default.png" alt="<%=direct.title%>" img="<%=direct.img%>" class="dimg"></a></span>
+                        <dl>
+                            <dt><a href="http://127.0.0.1:8080/<%=direct.mark%>/<%=direct._id%>.html"><%=direct.title%></a></dt>
+                            <dd>　　<%=direct.description%></dd>
+                            <strong>作者：<%=direct.creator%></strong>
+                        </dl>
+                    </div>
+                    <div class="interact">
+                        <span class="yz"><%=direct.praise%>赞</span>
+                        <div class="wb">
+                            <div class="position_fx_con">
+                                <a href="javascript:;" class="sina" title="新浪"></a>
+                                <a href="javascript:;" style="background-position:0 -20px;" class="qq" title="腾讯"></a>
+                                <a href="javascript:;" style="background-position:0 -40px;" class="renren" title="人人"></a>
+                                <div>
+                                    <a href="javascript:;" style="background-position:0 -60px;" title="空间" class="qqkj"></a>
+                                    <a href="javascript:;" style="background-position:0 -80px;" title="搜狐" class="souhu"></a>
+                                    <a href="javascript:;" style="background-position:0 -100px;" title="豆瓣" class="douban"></a>
+                                    <a href="javascript:;" style="background-position:0 -120px;" title="开心" class="kaixin"></a>
+                                </div>
+                                <p class="open"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%});%>
+                <ul class="page" curpage="1">
+                    <%- prev %>
+                    <%- pageBar %>
+                    <%- next %>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+
+
+
+
+<script type="text/javascript">
+$(function(){
+    $(".open").click(function(){
+        if($(this).parent().parent().hasClass("show")){
+            $(this).parent().parent().removeClass("show");
+            $(this).parent().parent().animate({"width":"118px"},300);
+            $(this).parent().animate({"width":"114px"},300);
+            $(this).parent().find("div").animate({"width":"0px"},300);
+        }else{
+            $(this).parent().parent().addClass("show");
+            $(this).parent().parent().animate({"width":"255px"},300);
+            $(this).parent().animate({"width":"255px"},300);
+            $(this).parent().find("div").css({"height":"20px"}).animate({"width":"140px"},300);
+        }
+
+    })
+    //分享
+    $('.sina').click(function(){
+        var oParent = $(this).parent().parent().parent().parent();
+        window.open('http://v.t.sina.com.cn/share/share.php?title='+encodeURIComponent(oParent.find("dt").find("a").text())+'&url='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+'&pic='+oParent.find(".dimg").attr("src")+'&source=bookmark','_blank','width=450,height=400');
+    });
+    $('.qq').click(function(){
+        var oParent = $(this).parent().parent().parent().parent();
+        var _t = encodeURI(oParent.find("dt").find("a").text());var _url = encodeURIComponent(oParent.find("dt").find("a").attr("href"));var _appkey = encodeURI('');var _pic = oParent.find(".dimg").attr("src");var _site = '';var _u = 'http://v.t.qq.com/share/share.php?title='+_t+'&url='+_url+'&appkey='+_appkey+'&site='+_site+'&pic='+_pic;window.open( _u,'转播到腾讯微博', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no')
+    });
+    $('.renren').click(function(){
+        var oParent = $(this).parent().parent().parent().parent();
+        window.open('http://widget.renren.com/dialog/share?resourceUrl='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+"&srcUrl="+oParent.find(".dimg").attr("src")+"&title="+encodeURIComponent(oParent.find("dt").find("a").text())+'&description=');
+    });
+    $('.souhu').click(function(){
+        var oParent = $(this).parent().parent().parent().parent().parent();
+        window.open('http://t.sohu.com/third/post.jsp?&url='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+"&srcUrl="+oParent.find(".dimg").attr("src")+"&title="+encodeURIComponent(oParent.find("dt").find("a").text()));
+    });
+    $('.qqkj').click(function(){
+        var oParent = $(this).parent().parent().parent().parent().parent();
+        window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+"&srcUrl="+oParent.find(".dimg").attr("src")+"&title="+encodeURIComponent(oParent.find("dt").find("a").text()));
+    });
+    $('.douban').click(function(){
+        var oParent = $(this).parent().parent().parent().parent().parent();
+        window.open('http://www.douban.com/recommend/?url='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+"&srcUrl="+oParent.find(".dimg").attr("src")+"&title="+encodeURIComponent(oParent.find("dt").find("a").text()));
+    });
+    $('.kaixin').click(function(){
+        var oParent = $(this).parent().parent().parent().parent().parent();
+        window.open('http://www.kaixin001.com/repaste/share.php?rtitle=' + encodeURIComponent(oParent.find("dt").find("a").text())) + '&rurl=' + encodeURIComponent(oParent.find("dt").find("a").attr("href"));
+    });
+
+
+
+    //hovereffect
+    $(".sub,.mydirect,.adddirect,.directbox li").hover(function(){
+        $(this).addClass("hover");
+    },function(){
+        $(this).removeClass("hover");
+    });
+
+    //新建直播弹出层
+    alertShow($(".adddirect"),$(".directbox em"));
+
+    //登录盒子
+    $(".sub").click(function(){
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8080/login.do",
+            data: "email="+$("#email").val().toLowerCase()+"&password="+$("#password").val(),
+            success: function(user){
+                if(user=="false"){
+                    alert("用户不存在或密码错误。")
+                }else{
+                    $("#login-effect").animate({"top":"0"},300);
+                    $(".mymsg img,#head img").attr("src",user.face);
+                }
+            }
+        });
+    });
+
+    //选择频道
+    $(".directbox i").click(function(){
+        $(".directbox ul").show(200);
+    });
+
+    $(".directbox li").click(function(){
+        $(".directbox i").html($(this).html());
+        $(".directbox ul").hide(200);
+    });
+
+    //分页优化
+    var str = window.location.href;
+    var pa = /.*\/(.*)\//;
+    var curpage= str.match(pa)[1];
+    $(".page li").eq(curpage).find("a").css({"background":"red"})
+});
+</script>
+</body>
+</html>

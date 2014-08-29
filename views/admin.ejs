@@ -1,0 +1,169 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/superadmin.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="con">
+            <div class="box1">
+                <h3>html编辑</h3>
+                <a href="/useradmin.do">用户权限管理</a>
+                <textarea class="htmlbox"><%=htmls.html%></textarea>
+                <div>
+                    <!--<p>预览</p>-->
+                    <input type="button" value="发布" />
+                </div>
+            </div>
+            <div class="box2">
+                <ul></ul>
+                <div class="clear"></div>
+                <h3>上传头图</h3>
+                <div class="file">
+                    <div></div>
+                    <p>上传</p>
+                    <p>确定</p>
+                    <iframe id="exec_target" name="exec_target" style="width:0px;height:0px;display:none;"></iframe>
+                    <form id="upimgs"  action="/admin/imageUpload" method="post" enctype="multipart/form-data" target="exec_target">
+                        <input name="image" type="file" id="upfile" />
+                        <input type="hidden" value="4" name="type" />
+                        <input type="button" id="upload_file" value="确定" style="float:right;margin-right:20px;"/>
+                    </form>
+                </div>
+            </div>
+            <div class="box3">
+                <h3>用户管理</h3>
+                <div class="box3_con">
+                    <div class="find">
+                        <span>查找用户</span>
+                        <input type="text" value="" id="user_keywords"/>
+                        <p id="user_find">查找</p>
+                    </div>
+                    <ul id="user_list">
+                    </ul>
+                </div>
+            </div>
+            <div class="box3">
+                <h3>用户管理</h3>
+                <div class="box3_con">
+                    <div class="find">
+                        <span>查找直播</span>
+                        <input type="text" value="" id="direct_keywords"/>
+                        <p id="direct_find">查找</p>
+                    </div>
+                    <ul id="direct_list">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+<div id="directwrap">
+    <div id="directbg">
+        <div class="directbox">
+            <em>取消</em>
+            <h3>是否删除用户“”？</h3>
+            <div>
+                <a href="javascript:;"></a>
+                <span>否</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+    $("#user_find").click(function(){
+        if($("#user_keywords").val() != ""){
+            $.getScript("http://127.0.0.1:8080/search_user.do?type=json&keywords="+$("#user_keywords").val(),function(){
+                var oHtml="";
+                for(var i=0;i<data.searchuser.length;i++){
+                    oHtml+="<li user_id='"+data.searchuser[i]._id+"'><span>"+data.searchuser[i].nickname+"</span><em>删除</em></li>";
+                }
+                $("#user_list").html(oHtml);
+                alertShow($("#user_list em"),$(".directbox em"),$("#directwrap"));
+            });
+        }
+    })
+    $("#user_list em").live("click",function(){
+        var oId = $(this).parent().attr("user_id");
+        var oName = $(this).parent().find("span").text();
+        $(".directbox h3").text("是否删除用户“"+oName+"”？");
+        $(".directbox a").attr("href","http://127.0.0.1:8080/superremoveuser.do?_id="+oId)
+    })
+
+
+    $("#direct_find").click(function(){
+        if($("#direct_keywords").val() != ""){
+            $.getScript("http://127.0.0.1:8080/search.do?type=json&keywords="+$("#direct_keywords").val(),function(){
+                var oHtml="";
+                for(var i=0;i<data.searchlist.length;i++){
+                    oHtml+="<li user_id='"+data.searchlist[i]._id+"'><span>"+data.searchlist[i].title+"</span><em>删除</em></li>";
+                }
+                $("#direct_list").html(oHtml);
+                alertShow($("#direct_list em"),$(".directbox em"),$("#directwrap"));
+            });
+        }
+    })
+    $("#direct_list em").live("click",function(){
+        var oId = $(this).parent().attr("user_id");
+        var oName = $(this).parent().find("span").text();
+        $(".directbox h3").text("是否删除直播“"+oName+"”？");
+        $(".directbox a").attr("href","http://127.0.0.1:8080/superremovedirect.do?_id="+oId)
+    })
+
+    $(".box1 input").click(function(){
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8080/superrelease.do",
+            data: "html="+$(".htmlbox").val(),
+            success: function(msg){
+                //alert( "Data Saved: " + msg );
+                alert("发布成功");
+            }
+        });
+    })
+    updateImages()//上传图片
+    function updateImages(){
+        $("#upfile").change(function(){
+            $(".file div").text($("#upfile").val());
+        });
+        //上传执行数据相关
+        $("#upload_file").click(function(){
+            var objFile=document.getElementById("upfile");
+            if($("#upfile").val()!= "" && $("#feedback img").length<=2){
+                $("#upimgs").submit();
+                objFile.outerHTML=objFile.outerHTML.replace(/(value=\").+\"/i,"$1\"");
+            }else if($("#upfile").val()== ""){
+                alert("请选择图片!");
+                return
+            }
+        });
+        $("#exec_target").load(function(){
+            var oImg = $(window.frames["exec_target"].document.body).find("span").html();
+            var re=/(.+)(\..+)/;
+            var str=oImg.match(re);
+            var oSrc=str[1] +"594x308"+str[2];
+            /*$(".title").css({"background":"url('"+oSrc+"') no-repeat"});
+            $("#banner").val(oSrc);
+            $("#modifBanner").submit();*/
+            $(".box2 ul").append("<li>http://127.0.0.1:8080"+oSrc+"</li>");
+        });
+    }
+});
+</script>
+</body>
+</html>

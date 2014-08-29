@@ -1,0 +1,239 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/list.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="list_left">
+            <%thislive.forEach(function(direct){%>
+            <div class="list_con">
+                <h4><em>正在直播</em><i>开始时间  <%=:direct.start_time | format:"yyyy-MM-dd"%></i></h4>
+                <div>
+                    <p><a href="http://127.0.0.1:8080/<%=direct.oType%>/<%=direct._id%>.html"><img src="http://127.0.0.1:8080/image/index/default.png" alt="<%=direct.title%>" img="<%=direct.img%>" class="dimg"></a></p>
+                    <dl>
+                        <dt><a href="http://127.0.0.1:8080/<%=direct.oType%>/<%=direct._id%>.html"><%=direct.title%></a></dt>
+                        <dd>　　<%=direct.description%></dd>
+                        <strong>作者：<%=direct.creator%></strong>
+                    </dl>
+                </div>
+                <div class="interact">
+                    <span class="yz"><%=direct.praise%>赞</span>
+                </div>
+                <% if (user && userid == masterid) { %>
+                <a href="javascript:;" class="remove" rm="http://127.0.0.1:8080/removelive?directid=<%=direct._id%>"></a>
+                <% } %>
+            </div>
+            <%});%>
+            <ul class="page" curpage="1">
+                <%- prev %>
+                <%- pageBar %>
+                <%- next %>
+            </ul>
+        </div>
+        <div class="list_right">
+            <div class="user visitor">
+                <div class="user_con">
+                    <div style="position:relative;">
+                        <img src="<%=thisuser.face%>" />
+                        <em><%=thisuser.nickname%></em>
+                        <% if (user && userid == masterid) { %>
+                        <% }else{ %>
+                        <div class="gz1"></div>
+                        <div class="gz_zk">取消关注</div>
+                        <% } %>
+                    </div>
+                    <div style="margin-top:23px;padding-bottom:10px;">
+                        <p>
+                            <span style="float:left;margin-left:9px;"><strong><%=thisuser.note_num%></strong>直播</span>
+                            <span style="float:right;margin-right:20px;"><strong><%=praise%></strong>赞</span>
+                        </p>
+                    </div>
+                </div>
+                <a href="###" class="weibo">TA的新浪微博</a>
+                <% if (user && userid == masterid) { %>
+                <p class="addlive"></p>
+                <% } %>
+            </div>
+            <ul>
+                <% if (qltype != "") { %>
+                <a href="/list/<%=pin%>/q/1">
+                    <li>
+                        <p><%=qltype[0].type%></p>
+                        <span><%=qltype.length%></span>
+                    </li>
+                </a>
+                <% } %>
+                <% if (bjbtype != "") { %>
+                <a href="/list/<%=pin%>/pc/1">
+                <li>
+                    <p><%=bjbtype[0].type%></p>
+                    <span><%=bjbtype.length%></span>
+                </li>
+                </a>
+                <% } %>
+                <% if (ydtype != "") { %>
+                <a href="/list/<%=pin%>/mobile/1">
+                <li>
+                    <p><%=ydtype[0].type%></p>
+                    <span><%=ydtype.length%></span>
+                </li>
+                </a>
+                <% } %>
+                <% if (pjtype != "") { %>
+                <a href="/list/<%=pin%>/cpu/1">
+                <li>
+                    <p><%=pjtype[0].type%></p>
+                    <span><%=pjtype.length%></span>
+                </li>
+                </a>
+                <% } %>
+                <% if (ittype != "") { %>
+                <a href="/list/<%=pin%>/enterprise/1">
+                <li>
+                    <p><%=ittype[0].type%></p>
+                    <span><%=ittype.length%></span>
+                </li>
+                </a>
+                <% } %>
+                <% if (smtype != "") { %>
+                <a href="/list/<%=pin%>/digital/1">
+                <li>
+                    <p><%=smtype[0].type%></p>
+                    <span><%=smtype.length%></span>
+                </li>
+                </a>
+                <% } %>
+                <% if (yxtype != "") { %>
+                <a href="/list/<%=pin%>/gamelive/1">
+                <li>
+                    <p><%=yxtype[0].type%></p>
+                    <span><%=yxtype.length%></span>
+                </li>
+                </a>
+                <% } %>
+                <% if (xptype != "") { %>
+                <a href="/list/<%=pin%>/hardware/1">
+                <li>
+                    <p><%=xptype[0].type%></p>
+                    <span><%=xptype.length%></span>
+                </li>
+                </a>
+                <% } %>
+                <% if (sztype != "") { %>
+                <a href="/list/<%=pin%>/dh/1">
+                <li>
+                    <p><%=sztype[0].type%></p>
+                    <span><%=sztype.length%></span>
+                </li>
+                </a>
+                <% } %>
+                <% if (wstype != "") { %>
+                <a href="/list/<%=pin%>/diy/1">
+                <li>
+                    <p><%=wstype[0].type%></p>
+                    <span><%=wstype.length%></span>
+                </li>
+                </a>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+
+<div id="directwrap">
+    <div id="directbg">
+        <div class="removebox">
+            <em>取消</em>
+            <h3>是否删除“酷派9070+XO发布会暨酷派商城正式酷派商城？”直播</h3>
+            <a href="###"></a>
+            <span>否</span>
+        </div>
+    </div>
+</div>
+
+
+<div id="addlive">
+    <div id="addlivebg">
+        <div class="directbox">
+            <em>取消</em>
+            <h3>新建直播</h3>
+            <div>
+                <form action="http://127.0.0.1:8080/newaddr.do" method="get" id="adddirect">
+                    <dl><dt>直播标题</dt><dd><input type="text" class="txt1 title" name="title" /></dd></dl>
+                    <dl><dt>关键字</dt><dd><input type="text" class="txt1 tags" name="tags" /></dd></dl>
+                    <dl style="padding:0;line-height:20px;overflow:hidden;"><dt style="height:20px;">&nbsp;</dt><dd style="line-height:20px;">用中文半角“，”分隔 如：直播台，天极</dd></dl>
+                    <dl><dt>内容介绍</dt><dd><textarea class="txt2 desc" name="description"></textarea></dd></dl>
+                    <dl><dt>选择频道</dt><dd>
+                    <span>
+                        <input type="hidden" name="type" id="seltype" value="群乐频道" />
+                        <% if(user){ %>
+                            <input type="hidden" name="pin" id="<%= user.pin %>" />
+                        <% }else{%>
+                            <input type="hidden" name="pin" id="" />
+                        <% }%>
+                        <i>群乐频道</i>
+                        <ul>
+                            <li>群乐频道</li>
+                            <li>笔记本/平板</li>
+                            <li>移动互联</li>
+                            <li>配件/显示器</li>
+                            <li>IT新闻</li>
+                            <li>数码影像</li>
+                            <li>游戏live秀</li>
+                            <li>新品秀</li>
+                            <li>数字家电</li>
+                            <li>外设/深港</li>
+                        </ul>
+                    </span>
+                    </dd></dl>
+                    <dl><input type="submit" class="subs" value="&nbsp;" /></dl>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+$(function(){
+    alertShow($(".remove"),$(".removebox em,.removebox span"),$("#directwrap"));
+    alertShow($(".addlive"),$(".directbox em"),$("#addlive"));
+    $(".remove").click(function(){
+        var oTitle = $(this).parent().find("dt").text();
+        var oHref = $(this).attr("rm");
+        $(".removebox h3").html("是否删除“"+oTitle+"”直播");
+        $(".removebox a").attr("href",oHref);
+    })
+
+    //选择频道
+    $(".directbox i").click(function(){
+        $(".directbox ul").show(200);
+    });
+
+    $(".directbox li").click(function(){
+        var thisTxt=$(this).text();
+        $(".directbox i").text(thisTxt)
+        $("#seltype").val(thisTxt);
+        $(".directbox ul").hide(200);
+    });
+    $(".subs").hover(function(){
+        $(this).addClass("hover");
+    },function(){
+        $(this).removeClass("hover");
+    });
+})
+</script>
+</html>

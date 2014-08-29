@@ -1,0 +1,66 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'c:\\Program Files (x86)\\nodejs\\node.exe',
+1 verbose cli   'c:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'forever=0.8.3',
+1 verbose cli   '-g' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose cache add [ 'forever=0.8.3', null ]
+5 verbose cache add name=undefined spec="forever=0.8.3" args=["forever=0.8.3",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'forever=0.8.3',
+6 verbose parsed url   path: 'forever=0.8.3',
+6 verbose parsed url   href: 'forever=0.8.3' }
+7 silly lockFile 4687fa6d-forever-0-8-3 forever=0.8.3
+8 verbose lock forever=0.8.3 C:\Users\yoko\AppData\Roaming\npm-cache\4687fa6d-forever-0-8-3.lock
+9 silly lockFile 4687fa6d-forever-0-8-3 forever=0.8.3
+10 silly lockFile 4687fa6d-forever-0-8-3 forever=0.8.3
+11 verbose addNamed [ 'forever=0.8.3', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 5beb54c6-forever-0-8-3 forever=0.8.3@
+14 verbose lock forever=0.8.3@ C:\Users\yoko\AppData\Roaming\npm-cache\5beb54c6-forever-0-8-3.lock
+15 silly addNameRange { name: 'forever=0.8.3', range: '*', hasData: false }
+16 verbose url raw forever=0.8.3
+17 verbose url resolving [ 'https://registry.npmjs.org/', './forever%3D0.8.3' ]
+18 verbose url resolved https://registry.npmjs.org/forever%3D0.8.3
+19 info trying registry request attempt 1 at 18:11:03
+20 http GET https://registry.npmjs.org/forever%3D0.8.3
+21 http 404 https://registry.npmjs.org/forever%3D0.8.3
+22 silly registry.get cb [ 404,
+22 silly registry.get   { date: 'Thu, 03 Apr 2014 10:11:08 GMT',
+22 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R14B04)',
+22 silly registry.get     'content-type': 'application/json',
+22 silly registry.get     via: '1.1 varnish',
+22 silly registry.get     'cache-control': 'max-age=0',
+22 silly registry.get     'content-length': '52',
+22 silly registry.get     'accept-ranges': 'bytes',
+22 silly registry.get     age: '0',
+22 silly registry.get     'x-served-by': 'cache-v36-ASH, cache-ty67-TYO',
+22 silly registry.get     'x-cache': 'MISS, MISS',
+22 silly registry.get     'x-cache-hits': '0, 0',
+22 silly registry.get     'x-timer': 'S1396519867.765385389,VS0,VS90,VE188,VE268',
+22 silly registry.get     'keep-alive': 'timeout=10, max=50',
+22 silly registry.get     connection: 'Keep-Alive' } ]
+23 silly lockFile 5beb54c6-forever-0-8-3 forever=0.8.3@
+24 silly lockFile 5beb54c6-forever-0-8-3 forever=0.8.3@
+25 error 404 'forever%3D0.8.3' is not in the npm registry.
+25 error 404 You should bug the author to publish it
+25 error 404
+25 error 404 Note that you can also install from a
+25 error 404 tarball, folder, or http url, or git url.
+26 error System Windows_NT 6.1.7601
+27 error command "c:\\Program Files (x86)\\nodejs\\node.exe" "c:\\Program Files (x86)\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "forever=0.8.3" "-g"
+28 error cwd e:\ZhiBoTai
+29 error node -v v0.10.26
+30 error npm -v 1.4.3
+31 error code E404
+32 verbose exit [ 1, true ]

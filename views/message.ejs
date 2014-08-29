@@ -1,0 +1,40 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/index.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="container">
+            <%msg.forEach(function(message){%>
+            <div class="msglist">
+                <dl><dt><a href="<%=message.url%>"><%=message.form_name%><%=message.message%></a></dt><dd><%=:message.form_time_normal | format:"yyyy-MM-dd HH:mm:ss"%></dd></dl>
+            </div>
+            <%});%>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+
+
+
+
+<script type="text/javascript">
+$(function(){
+
+});
+</script>
+</body>
+</html>

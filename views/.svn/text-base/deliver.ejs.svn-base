@@ -1,0 +1,496 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title><%=thisdirect.title%></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="<%=thisdirect.tags%>" />
+    <meta name="description" content="<%=thisdirect.description%>_<%=thisdirect.title%>_天极网" />
+    <meta name="author" content="天极网" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/mylive.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+    <base target="_blank"  />
+</head>
+
+<body>
+<div id="wrap" style="position:relative;">
+    <div class="position1" id="position1">有新内容更新 点击返回顶部查看</div>
+    <% include head %>
+    <div id="main" style="position:relative;">
+        <div class="head_images" banner="<%=thisdirect.banner%>"><div><%=thisdirect.title%></div></div>
+        <div class="main">
+            <div class="con">
+                <div class="con_title">
+                    <p><span class="state" status="<%=thisdirect.status%>">正在直播</span><span class="create_time"><%=:thisdirect.start_time | format:"yyyy-MM-dd"%> 开始</span><span class="style"><%=thisdirect.type%></span></p>
+                </div>
+                <div class="con_nr">
+                    <dl>
+                        <%thisrecommend.forEach(function(recommend){%>
+                        <dd><a href="<%=recommend.url%>"><%=recommend.txt%></a></dd>
+                        <%});%>
+                    </dl>
+                    <ul id="ul1">
+
+                    </ul>
+                    <ul id="ul2">
+
+                    </ul>
+                </div>
+            </div>
+            <div class="message">
+                <% if (user && userid == liveuserid) { %>
+                <div class="user">
+                    <div class="user_con">
+                        <div>
+                            <img src="<%=thisdirect.face%>" />
+                            <em><%=thisdirect.creator%></em>
+                        </div>
+                        <div style="margin-top:23px">
+                            <p>
+                                <span style="float:left;margin-left:9px;"><strong><%=thisdirect.note_num%></strong>直播</span>
+                                <span style="float:right;margin-right:20px;"><strong><%=thisdirect.praise%></strong>赞</span>
+                            </p>
+                        </div>
+                    </div>
+                    <a href="http://127.0.0.1:8080/admin/edit/<%=thisdirect._id%>" class="mylive_tj"></a>
+                    <p class="invite">邀请其他用户一起直播</p>
+                </div>
+                <div class="mylive_team">
+                    <strong>协作者</strong>
+                    <ul>
+                        <li>
+                            <img src="../image/mylive/img3.png" />
+                            <p>窦辉</p>
+                            <span></span>
+                        </li>
+                        <li>
+                            <img src="../image/mylive/img3.png" />
+                            <p>窦辉</p>
+                            <span></span>
+                        </li>
+                    </ul>
+                </div>
+                <% }else{ %>
+                <div class="user visitor">
+                    <div class="user_con">
+                        <div style="position:relative;">
+                            <img src="<%=thisdirect.face%>" />
+                            <em><%=thisdirect.creator%></em>
+                            <div id="relations" class="jgz"></div>
+                            <div class="qx_hgz">取消关注</div>
+                            <div class="qx_ygz">取消关注</div>
+                        </div>
+                        <div style="margin-top:23px;padding-bottom:10px;">
+                            <p>
+                                <span style="float:left;margin-left:9px;"><strong><%=thisdirect.note_num%></strong>直播</span>
+                                <span style="float:right;margin-right:20px;"><strong><%=thisdirect.praise%></strong>赞</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mylive_team">
+                    <strong>协作者</strong>
+                    <ul>
+                        <li>
+                            <img src="../image/mylive/img3.png" />
+                            <p>窦辉</p>
+                        </li>
+                        <li>
+                            <img src="../image/mylive/img3.png" />
+                            <p>窦辉</p>
+                        </li>
+                    </ul>
+                </div>
+                <% } %>
+                <!-- Duoshuo Comment BEGIN -->
+                <div class="mylive_state">
+                    <strong>直播说明</strong>
+                    <p><%=thisdirect.description%></p>
+                </div>
+                <div class="ds-thread"></div>
+                <script type="text/javascript">
+                    var duoshuoQuery = {short_name:"yesky"};
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';ds.async = true;
+                        ds.src = 'http://static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+                        (document.getElementsByTagName('head')[0]
+                                || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- Duoshuo Comment END -->
+            </div>
+        </div>
+        <div class="position" id="position">
+            <div class="position_sc" style="display:none;">收藏</div>
+            <div class="position_z">
+                <div></div>
+                <p><%=thisdirect.praise%>赞</p>
+            </div>
+            <div class="position_fx">
+                <div class="position_fx_con">
+                    <a href="javascript:;" class="sina" title="新浪"></a>
+                    <a href="javascript:;" style="background-position:0 -20px;" class="qq" title="腾讯"></a>
+                    <a href="javascript:;" style="background-position:0 -40px;" class="renren" title="人人"></a>
+                    <div>
+                        <a href="javascript:;" style="background-position:0 -60px;" title="空间" class="qqkj"></a>
+                        <a href="javascript:;" style="background-position:0 -80px;" title="搜狐" class="souhu"></a>
+                        <a href="javascript:;" style="background-position:0 -100px;" title="豆瓣" class="douban"></a>
+                        <a href="javascript:;" style="background-position:0 -120px;" title="开心" class="kaixin"></a>
+                    </div>
+                    <p></p>
+                </div>
+            </div>
+            <div class="position_top"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+
+
+<div id="directwrap">
+    <div id="directbg">
+        <div class="directbox">
+            <h3>填入希望邀请的用户名称：</h3><em>取消</em>
+            <div><input type="text" value="" name="invite" id="invite" /></div>
+            <p>已邀请用户：</p>
+            <ul id="inviteuser">
+
+            </ul>
+            <div class="mylive_yq"></div>
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div id="livelogin">
+    <div id="liveloginbg">
+        <div class="livelogintbox">
+            <h3>为继续您的操作请登录直播台</h3><em>取消</em>
+            <div class="livelogintbox_con">
+                <p class="inp" style="margin-bottom:22px;">
+                    <span>邮箱</span>
+                    <input type="text" value="" name="email"/>
+                </p>
+                <p class="inp">
+                    <span>密码</span>
+                    <input type="password" name="password" />
+                </p>
+                <div>
+                    <p><input type="checkbox" />记住我</p>
+                    <span>忘记密码？</span>
+                </div>
+            </div>
+            <div class="livelogin_dl">
+                <p>使用微博帐号登录</p>
+                <div></div>
+                <span>注册</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<form method="post" action="/admin/login" id="box1">
+    <ul>
+        <li><span>邮　箱</span><input type="text" name="email" value="" id="email"/></li>
+        <li style="margin-bottom:34px;"><span>密　码</span><input type="password" name="password" value=""/><a href="###">忘记密码？</a></li>
+        <li><span style="color:#9f786b;">验证码</span><input type="text" value="" style="width:83px;"/></li>
+    </ul>
+</form>-->
+
+<div id="did" style="display:none;"><%=thisdirect._id%></div>
+<div id="creator" tdcid="<%=thisdirect.creator_id%>" tdcname="<%=thisdirect.creator_name%>" tdcface="<%=thisdirect.creator_face%>"></div>
+</body>
+<script>
+    //右侧跟随滚动
+    function getDocumentScrollTop(){
+        return Math.max(window.document["documentElement"].scrollTop,window.document.body.scrollTop)
+    }
+    window.onscroll=function ()
+    {
+        var oDiv=document.getElementById('position');
+        var oDiv1=document.getElementById('position1');
+        var scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+        oDiv.style.top=scrollTop+(document.documentElement.clientHeight-oDiv.offsetHeight)/2+'px';
+        oDiv1.style.top=scrollTop+3+'px';
+        //document.title=getDocumentScrollTop();//title查看滚动条高度
+        if(getDocumentScrollTop()<=700){
+            $("#position1").hide();
+        }
+    }
+    window.onload=function(){
+        var oHeight = parseInt($(".con").css("height"));
+        if(oHeight <= "919"){
+            $(".message").css({"height":"919px"});
+        }else{
+            $(".message").css({"height":$(".con").css("height")});
+        }
+    }
+    $(function(){
+        var titleWidth = parseInt($(".head_images").css("width"));
+        var titleHeight = parseInt($(".head_images").css("height"));
+        var textWidth = parseInt($(".head_images div").css("width"))+94;
+        var textHeight = parseInt($(".head_images div").css("height"))+22;
+        $(".head_images div").css({"margin-left":(titleWidth-textWidth)/2+"px","margin-top":(titleHeight-textHeight)/2+"px"})
+        //返回顶部
+        $(".position_top,.position1").click(function(){
+            $("html,body").animate({scrollTop: 0}, 300);
+        })
+        $("#position1").click(function(){
+            $(this).hide();
+        })
+        //按钮反馈
+        $(".position_sc,.position_z").hover(function(){
+            $(this).css({"color":"#2e5998"});
+        },function(){
+            $(this).css({"color":"#3E3E3E"});
+        })
+        $(".position_top,.comment_style p,.mylive_tj,.mylive_yq").hover(function(){
+            $(this).addClass("show");
+        },function(){
+            $(this).removeClass("show");
+        })
+        $(".position_fx p").click(function(){
+            if($(".position_fx").hasClass("show")){
+                $(".position_fx").animate({"height":"175px"},300,function(){
+                    $(".position_fx").removeClass("show");
+                });
+                $(".position_fx_con div").animate({"height":"0px"},300);
+            }else{
+                $(".position_fx").addClass("show").animate({"height":"299px"},300);
+                $(".position_fx_con div").animate({"height":"120px"},300);
+            }
+        })
+        //弹出层
+        alertShow($(".invite"),$(".directbox em"),$("#directwrap"));
+        $(".invite").click(function(){
+            invite_init();
+        })
+        //alertShow($(".position_z"),$(".directbox em"),$("#livelogin"));
+        //banner、 直播状态
+        function Banner(){
+            var banner = $(".head_images").attr("banner");
+            if(banner != "undefined" && banner != ""){
+                $(".head_images").css({"background":"url("+banner+") no-repeat"});
+            }
+            var state = $(".state").attr("status");
+            if(state == "1"){
+                $(".state").html("正在直播");
+            }else{
+                $(".state").html("直播结束");
+            }
+        }
+        Banner();
+        var lastTime = null ;
+        var did = $("#did").text();
+        function autoUpdate(){
+            var timeString = "";
+            if (lastTime != null) {
+                timeString = "&ct=" + lastTime;
+            }
+            var uri = "/digital/" + did + ".html?type=json&skip=0"+ timeString;
+
+            $.getScript(uri, function(){
+                if (data.release.length == 0) {
+                    return;
+                }
+                var oHtml = '';
+                for(var i= 0;i < data.release.length; i++){
+                    if (i === 0 ) {
+                        lastTime = data.release[i].create_time;
+                    }
+                    if(data.release[i].newlive && getDocumentScrollTop()>=700){
+                        $("#position1").show();
+                    }
+                    if(data.release[i].img1){
+                        var re=/(.+)(\..+)/;
+                        var str=data.release[i].img1.match(re);
+                        var oSrc=str[1] +"580x400"+str[2];
+                        oHtml+="<li><div class='patch'><div class='patch_con'><div class='top'></div><div class='center'><img src='"+oSrc+"'/><p>"+data.release[i].text+"</p></div><div class='bottom'></div><div class='jiantou'></div></div><div class='time'><p><strong>"+data.release[i].shortTime+"</strong><em>"+data.release[i].time1+"</em></p><span></span></div></div></li>"
+                    }else{
+                        oHtml+="<li><div class='patch'><div class='patch_con'><div class='top'></div><div class='center'><p>"+data.release[i].text+"</p></div><div class='bottom'></div><div class='jiantou'></div></div><div class='time'><p><strong>"+data.release[i].shortTime+"</strong><em>"+data.release[i].time1+"</em></p><span></span></div></div></li>"
+                    }
+                }
+                $("#ul2").html($("#ul1").html() + $("#ul2").html());
+                $("#ul1").html(oHtml);
+                $('#ul1 li:eq(0)').addClass('div_show');
+                $('#ul2 li').removeClass('div_show');
+            });
+        }
+        autoUpdate();
+        if($(".state").attr("status")==1){
+            setInterval(function(){
+                autoUpdate();
+            },10000);
+        }
+        var iMore=0;
+        $(window).scroll(function () {
+            //backtop
+            var bodyTop = 0;
+            if (typeof window.pageYOffset != 'undefined') {
+                bodyTop = window.pageYOffset
+            } else if (typeof document.compatMode != 'undefined' && document.compatMode != 'BackCompat') {
+                bodyTop = document.documentElement.scrollTop
+            } else if (typeof document.body != 'undefined') {
+                bodyTop = document.body.scrollTop
+            }
+            $("#fhd").css("top",bodyTop+450);
+
+            //loadmore
+            if(($(window).height() + $(window).scrollTop()) >= $("body").height()){
+                iMore++;
+                $.getScript("/digital/" + did + ".html?type=json&skip="+parseInt(iMore+"0"),function(){
+                    var oHtml = '';
+
+                    if(data.release.length<10){
+                        $('#clk').hide();
+                    }else{
+                        $('#clk').show();
+                    }
+                    for(var i= 0;i < data.release.length; i++){
+                        var oTime=data.release[i].create_time;
+                        var _index=oTime.lastIndexOf("\:");
+                        var _str = oTime.lastIndexOf(" ");
+                        var _name=oTime.substring(_str,_index);
+                        if(data.release[i].img1){
+                                var re=/(.+)(\..+)/;
+                                var str=data.release[i].img1.match(re);
+                                var oSrc=str[1] +"580x400"+str[2];
+                            oHtml+="<li><div class='patch'><div class='patch_con'><div class='top'></div><div class='center'><img src='"+oSrc+"'/><p>"+data.release[i].text+"</p></div><div class='bottom'></div><div class='jiantou'></div></div><div class='time'><p><strong>"+data.release[i].shortTime+"</strong><em>"+data.release[i].time1+"</em></p><span></span></div></div></li>"
+                        }else{
+                            oHtml+="<li><div class='patch'><div class='patch_con'><div class='top'></div><div class='center'><p>"+data.release[i].text+"</p></div><div class='bottom'></div><div class='jiantou'></div></div><div class='time'><p><strong>"+data.release[i].shortTime+"</strong><em>"+data.release[i].time1+"</em></p><span></span></div></div></li>"
+                        }
+                    }
+                    $("#ul2").append(oHtml);
+                    if($(".con").css("height") >= "919px"){
+                        $(".message").css({"height":$(".con").css("height")});
+                    }
+
+                });
+            }
+        });
+        //分享
+        $('.sina').click(function(){
+            window.open('http://v.t.sina.com.cn/share/share.php?title='+encodeURIComponent($(".head_images").text())+'&url='+encodeURIComponent(window.location.href)+'&pic=http://127.0.0.1:8080'+$("#ul1 li:eq(0)").find("img").attr("src")+'&source=bookmark','_blank','width=450,height=400');
+        });
+        $('.qq').click(function(){
+            var _t = encodeURI($(".head_images").text());var _url = encodeURIComponent(window.location.href);var _appkey = encodeURI('');var _pic = $("#ul1 li:eq(0)").find("img").attr("src");var _site = '';var _u = 'http://v.t.qq.com/share/share.php?title='+_t+'&url='+_url+'&appkey='+_appkey+'&site='+_site+'&pic=http://127.0.0.1:8080'+_pic;window.open( _u,'转播到腾讯微博', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no')
+        });
+        $('.renren').click(function(){
+            window.open('http://widget.renren.com/dialog/share?resourceUrl='+encodeURIComponent(window.location.href)+"&srcUrl=http://127.0.0.1:8080"+$("#ul1 li:eq(0)").find("img").attr("src")+"&title="+encodeURIComponent($(".head_images").text())+'&description=');
+        });
+        $('.souhu').click(function(){
+            window.open('http://t.sohu.com/third/post.jsp?&url='+encodeURIComponent(window.location.href)+"&srcUrl=http://127.0.0.1:8080"+$("#ul1 li:eq(0)").find("img").attr("src")+"&title="+encodeURIComponent($(".head_images").text()));
+        });
+        $('.qqkj').click(function(){
+            window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+encodeURIComponent(window.location.href)+"&srcUrl=http://127.0.0.1:8080"+$("#ul1 li:eq(0)").find("img").attr("src")+"&title="+encodeURIComponent($(".head_images").text()));
+        });
+        $('.douban').click(function(){
+            window.open('http://www.douban.com/recommend/?url='+encodeURIComponent(window.location.href)+"&srcUrl=http://127.0.0.1:8080"+$("#ul1 li:eq(0)").find("img").attr("src")+"&title="+encodeURIComponent($(".head_images").text()));
+        });
+        $('.kaixin').click(function(){
+            window.open('http://www.kaixin001.com/repaste/share.php?rtitle=' + encodeURIComponent($(".head_images").text())) + '&rurl=' + encodeURIComponent(window.location.href);
+        });
+        $(".position_z").click(function(){
+            $.getScript("/praise?directid="+$("#did").text(), function(){
+                if(user == false){
+                    alert("用户未登录")
+                    //alertShow($(".position_z"),$(".directbox em"),$("#livelogin"));
+                }else{
+                    alert("以赞");
+                }
+            })
+        })
+    })
+
+    //初始化校验用户关系（yuqj）
+    checkRelation();
+    function checkRelation(){
+        $.getScript("http://127.0.0.1:8080/checkrelation.do?visitorId="+ $("#creator").attr("tdcid"),function(){
+            //alert("验证"+checkrelation.ygz +"!!"+ checkrelation.bgz)
+            var Rb=$("#relations");
+            if(checkrelation.ygz=="false" && checkrelation.bgz=="false"){Rb.attr("class","jgz");}//加关注
+            if(checkrelation.ygz=="true" && checkrelation.bgz=="false"){Rb.attr("class","ygz");}//已关注
+            if(checkrelation.ygz=="false" && checkrelation.bgz=="true"){Rb.attr("class","bgz");}//被关注
+            if(checkrelation.ygz=="true" && checkrelation.bgz=="true"){Rb.attr("class","hgz");}//互相关注
+            $(".hgz,.ygz").mouseover(function(){
+                $(".qx_hgz,.qx_ygz").hide();
+                if($(this).attr("class")=="jgz"){
+                    $(".qx_hgz").show();
+                    $(".qx_ygz").hide();
+                }else{
+                    $(".qx_hgz").hide();
+                    $(".qx_ygz").show();
+                }
+            });
+        });
+    };
+    //更新用户关系并重新校验（yuqj）
+    $(".jgz,.qx_ygz,.bgz,.qx_hgz").click(function(){
+        var i=0;
+        i++;
+        document.title=i;
+        var gz_type=$(this).attr("class");
+        $.getScript("http://127.0.0.1:8080/updaterelation.do?visitorId="+ $("#creator").attr("tdcid") +"&visitorName="+$("#creator").attr("tdcname")+"&visitorFace="+$("#creator").attr("tdcface")+"&gz_type="+gz_type);
+        $(".qx_hgz,.qx_ygz").hide();
+        //验证关系
+        checkRelation();
+    });
+
+
+    //邀请用户（yuqj）
+    $(".mylive_yq").click(function(){
+        if(UserSign==true){
+            if($("#invite").val()!=""){
+                $.getScript('http://127.0.0.1:8080/invite.do?did='+$("#did").text()+'&invite='+$("#invite").val(),function(o){
+                    if(o == "err!" ){
+                        alert("没用此用户，请重新输入！")
+                    }else{
+                        var oHtml="";
+                        for(var i=0;i<inviteusers.invitelist.length;i++){
+                            oHtml += '<li><img src = "'+inviteusers.invitelist[i].invite_face+'" /><p>'+inviteusers.invitelist[i].invite_name+'</p><span></span></li>';
+                        }
+                        $("#inviteuser").html(oHtml);
+                        $("#invite").val("")
+                    }
+                });
+            }else{
+                alert("请输入用户名!");
+            }
+        }else{
+            alert("您还没有登录!")
+        }
+
+    });
+
+    //删除邀请（yuqj）
+    $("#inviteuser li span,.mylive_team ul li span").live("click",function(){
+        var oThis = $(this);
+        $.getScript('http://127.0.0.1:8080/del_invite.do?did='+$("#did").text()+'&invite='+$(this).prev().text(),function(o){
+            oThis.parent().animate({"opacity":"0"},300,function(){
+                oThis.parent().remove();
+            });
+        });
+    });
+
+    //邀请初始化（yuqj）
+    invite_init();
+    function invite_init(){
+        $.getScript('http://127.0.0.1:8080/init_invite.do?did='+$("#did").text()+'&creator='+$("#creator").attr("tdcid"),function(o){
+            var oHtml="";
+            for(var i=0;i<init_invites.length;i++){
+                if($(".user_con em").text()==$("#head .topmymsg b").text()){
+                    oHtml += '<li><img src = "'+init_invites[i].invite_face+'" /><p>'+init_invites[i].invite_name+'</p><span></span></li>';
+                }else{
+                    oHtml += '<li><img src = "'+init_invites[i].invite_face+'" /><p>'+init_invites[i].invite_name+'</p></li>';
+                }
+            }
+            $("#inviteuser,.mylive_team ul").html(oHtml);
+        });
+    }
+</script>
+</html>

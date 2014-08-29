@@ -1,0 +1,616 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/edit.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.tinyscrollbar.min.js"></script>
+    <script type="text/javascript" src="/js/xheditor/xheditor-1.1.14-zh-cn.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="title">
+            <input type="button" value="" class="addtitle"/>
+            <ul>
+                <li class="qx"></li>
+                <li class="qr"></li>
+            </ul>
+            <form id="modifTitle" action="/admin/modifTitle" method="get">
+                <textarea class="title_text" readonly="readonly"><%=thisdirect.title%></textarea>
+                <input type="hidden" value="" name="title" id="directtitle"/>
+                <input type="hidden" value="<%=thisdirect._id%>" name="directid"/>
+            </form>
+            <div>
+                <p>点击此处修改标题背景图片</p>
+                <span class="fileclick"></span>
+            </div>
+            <form id="modifBanner" action="/admin/modifBanner" method="get">
+                <input type="hidden" value="<%=thisdirect.banner%>" name="banner" id="banner"/>
+                <input type="hidden" value="<%=thisdirect._id%>" name="directid"/>
+            </form>
+        </div>
+        <div class="con">
+            <div class="left">
+                <div class="livestate">
+                    <p>直播未开启</p>
+                    <div class="wkq"></div>
+                    <form id="modifState" action="/admin/modifState" method="get">
+                        <input type="hidden" value="<%=thisdirect.status%>" id="status" name="status"/>
+                        <input type="hidden" value="<%=thisdirect._id%>" name="directid"/>
+                    </form>
+                </div>
+                <dl class="style">
+                    <dt>
+                        <p>所属群组</p>
+                        <span></span>
+                        <div>
+                            <em class="qx">取消</em>
+                            <em class="qr">确认</em>
+                        </div>
+                    </dt>
+                    <dd>
+                        <div class="k">
+                            <form id="modifType" action="/admin/modifType" method="get">
+                                <strong><%=thisdirect.type%></strong>
+                                <input type="hidden" value="" name="directtype" id="directtype"/>
+                                <input type="hidden" value="<%=thisdirect._id%>" name="directid"/>
+                            </form>
+                        </div>
+                        <ul>
+                            <div>
+                                <li class="show">群乐频道</li>
+                                <li>笔记本/平板</li>
+                                <li>移动互联</li>
+                                <li>配件/显示器</li>
+                                <li>IT新闻</li>
+                            </div>
+                            <div>
+                                <li>数码影像</li>
+                                <li>游戏live秀</li>
+                                <li>新品秀</li>
+                                <li>数字家电</li>
+                                <li>外设/深港</li>
+                            </div>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl class="intro">
+                    <dt>
+                        <p>简介</p>
+                        <span></span>
+                        <div>
+                            <em class="qx">取消</em>
+                            <em class="qr">确认</em>
+                        </div>
+                    </dt>
+                    <dd>
+                        <form id="modifIntro" action="/admin/modifIntro" method="get">
+                            <textarea readonly="readonly"><%=thisdirect.description%></textarea>
+                            <input type="hidden" value="" name="description" id="description"/>
+                            <input type="hidden" value="<%=thisdirect._id%>" name="directid"/>
+                        </form>
+                    </dd>
+                </dl>
+                <dl class="key">
+                    <dt>
+                        <p>关键字</p>
+                        <span></span>
+                        <div>
+                            <em class="qx">取消</em>
+                            <em class="qr">确认</em>
+                        </div>
+                    </dt>
+                    <dd>
+                        <div>
+                            <span>黑莓</span><span>BlackBerry</span><span>2013</span><span>3.1</span><span>大尺寸屏幕</span>
+                        </div>
+                        <textarea><%=thisdirect.tags%></textarea>
+                        <form id="modifTags" action="/admin/modifTags" method="get">
+                            <input type="hidden" value="" name="tags" id="tags"/>
+                            <input type="hidden" value="<%=thisdirect._id%>" name="directid"/>
+                        </form>
+                    </dd>
+                </dl>
+                <dl class="links">
+                    <dt>添加置顶链接</dt>
+                    <dd>
+                        <form id="addRecommend" action="/admin/addRecommend" method="get">
+                            <div class="txt"><span>文字</span><p><input type="text" value="" name="recommendtxt"/></p></div>
+                            <div class="url"><span>URL</span><p><input type="text" value="" name="recommendurl"/></p></div>
+                            <input type="hidden"  name="directid" value="<%=thisdirect._id%>" />
+                        </form>
+                        <p class="links_qr"></p>
+                        <ul>
+                            <%thisrecommend.forEach(function(recommend){%>
+                            <li><a href="<%=recommend.url%>" target="_blank" class="links_txt"><%=recommend.txt%></a><a class="delrec" href="jacascript:;" former="/admin/removeRecommend?directid=<%=thisdirect._id%>&_id=<%=recommend._id%>">X</a></li>
+                            <%});%>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+            <div class="right">
+                <div class="edit">
+                    <div class="edit_top"><p>发布时间：<%=thisdirect.time%></p><span></span></div>
+                    <div class="edit_con">
+                        <div class="edit_left">
+                            <img src="http://127.0.0.1:8080/image/edit/i11.png" id="edit_left_img"/>
+                        </div>
+                        <form id="addLive"  method="get">
+                            <input type="hidden" value="<%=thisdirect._id%>" name="directid"/>
+                            <input type="hidden" name="livetext" value="" id="livetext"/>
+                            <input type="hidden" name="img1" value="" id="img1"/>
+                            <input type="hidden" name="img2" value="" id="img2"/>
+                            <input type="hidden" name="img3" value="" id="img3"/>
+                            <input type="hidden" name="type" value="" id="livetype"/>
+                        </form>
+                        <!--<textarea title="在这里添加你的内容..."></textarea>-->
+                        <style>
+                            #xhe0_Tool{position:absolute;right:0;top:-30px;background:none;border:none;}
+                            #xhe0_iframe{margin-top:10px;}
+                            #sourceCode{overflow:hidden; resize:none;}
+                        </style>
+                        <textarea  class="xheditor {tools:'Source,Bold,Italic,Underline,Strikethrough,FontColor,BackColor,Emot,Link,Unlink',skin:'nostyle',internalScript:false,inlineScript:false}" title="在这里添加你的内容..."></textarea>
+                    </div>
+                    <div class="edit_bottom" modify="">
+                        <a href="http://127.0.0.1:8080/<%=thisdirect.oType%>/<%=:thisdirect._id%>.html" target="_blank" >查看直播前台地址</a>
+                        <p><input type="checkbox" value=""/>同步到新浪微博</p>
+                        <div class="cwcg"></div>
+                        <div class="fb"></div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box_left">
+                        <ul class="box_left_qh">
+                            <li class="show">草稿箱(<span>12</span>)</li>
+                            <li>投递箱(<span>0</span>)</li>
+                            <a href="javascript:;">刷新投递箱</a>
+                        </ul>
+                        <div class="right_l_n">
+                            <div id="scrollbar1" class="right_l_n_s">
+                                <div class="scrollbar" style="height: 200px; background:#ccc"><div class="track" style="height: 200px; "><div class="thumb" ></div></div></div>
+                                <div class="viewport">
+                                    <div class="overview" style="top: 0px; ">
+                                        <ul>
+                                            <%thisdrafts.forEach(function(recommend){%>
+                                            <li>
+                                                <div class="imgs" url="<%=recommend.img1%>"></div>
+                                                <p class="livetext" style="border:none;"><%-recommend.text%></p>
+                                                <div class="xg">
+                                                    <span lid="<%=recommend._id%>"></span>
+                                                    <a class="delthislive" href="javascript:;" former="/admin/delLive?id=<%=recommend._id%>&directid=<%=recommend.direct_id%>"></a>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </li>
+                                            <%});%>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="scrollbar2">
+                                <div class="scrollbar" style="height: 200px; background:#ccc"><div class="track" style="height: 200px; "><div class="thumb" ></div></div></div>
+                                <div class="viewport">
+                                    <div class="overview" style="top: 0px; ">
+                                        <ul>
+                                            <%thisdeliver.forEach(function(recommend){%>
+                                            <li>
+                                                <div class="imgs" url="<%=recommend.img1%>"></div>
+                                                <p class="livetext" style="border:none;"><%-recommend.text%></p>
+                                                <div class="xg">
+                                                    <span lid="<%=recommend._id%>"></span>
+                                                    <a class="delthislive" href="javascript:;" former="/admin/delLive?id=<%=recommend._id%>&directid=<%=recommend.direct_id%>"></a>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </li>
+                                            <%});%>
+                                            <!--<li>
+                                                <div class="imgs">
+                                                    <img src="/images/201319188151357726095499286x215.JPG"></div>
+                                                <p class="livetext" style="border:none;">2222来到美国之前，听前辈们煞有其事的说，一定得尝尝樱桃味的可乐，今天的报道结束之后，路过超市就买了一瓶带樱桃的碳酸饮料，喝了一口，嗯，跟川贝枇杷露一个味道。</p>
+                                                <div class="xg">
+                                                    <span></span>
+                                                    <a></a>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </li>-->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box_right">
+                        <div class="box_right_t">
+                            <div class="fbnr">全部发布(<span>7</span>)</div>
+                            <div class="seek"><input type="text" value=""/><span></span></div>
+                        </div>
+                        <div class="fbnr_n">
+                            <div id="scrollbar3" class="right_l_n_s">
+                                <div class="scrollbar" style="height: 200px; background:#ccc"><div class="track" style="height: 200px; "><div class="thumb" ></div></div></div>
+                                <div class="viewport">
+                                    <div class="overview" style="top: 0px; ">
+                                        <ul>
+                                            <%thistimeline.forEach(function(recommend){%>
+                                            <li>
+                                                <div class="imgs" url="<%=recommend.img1%>"></div>
+                                                <p class="livetext" style="border:none;"><%-recommend.text%></p>
+                                                <div class="xg">
+                                                    <span lid="<%=recommend._id%>"></span>
+                                                    <a class="delthislive" href="javascript:;" former="/admin/delLive?id=<%=recommend._id%>&directid=<%=recommend.direct_id%>"></a>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </li>
+                                            <%});%>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+<div id="directwrap">
+    <div id="directbg">
+        <div class="directbox">
+            <em>取消</em>
+            <h3>选择你要上传的图片</h3>
+            <div class="mn_file">
+                <input type="text" value="" class="file_text"/>
+                <p class="ll"></p>
+                <span></span>
+                <iframe id="exec_target" name="exec_target" style="width:0px;height:0px;display:none;"></iframe>
+                <form id="upimgs"  action="/admin/imageUpload" method="post" enctype="multipart/form-data" target="exec_target">
+                    <input name="image" type="file" id="upfile" style="width:300px;float:left;margin-left:20px;display:inline;">
+                    <input type="hidden" value="2" name="type" />
+                    <input type="button" id="upload_file" value="确定" style="float:right;margin-right:20px;"/>
+                </form>
+                <p class="mn_file_t">支持JPG、PNG、GIF，大小不超过50M</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="livelogin">
+    <div id="liveloginbg">
+        <div class="livelogintbox">
+            <h3>选择你要上传的图片</h3><em>取消</em>
+            <div class="mn_file1">
+                <input type="text" value="" class="file_text1"/>
+                <p class="ll1"></p>
+                <span></span>
+                <iframe id="exec_target1" name="exec_target1" style="width:0px;height:0px;display:none;"></iframe>
+                <form id="upimgs1"  action="/admin/imageUpload" method="post" enctype="multipart/form-data" target="exec_target1">
+                    <input name="image" type="file" id="upfile1" style="width:300px;float:left;">
+                    <input type="hidden" value="3" name="type" />
+                    <input type="button" id="upload_file1" value="确定" style="float:right;"/>
+                </form>
+                <p class="mn_file_t">支持JPG、PNG、GIF，大小不超过50M</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+        //投递箱刷新
+        $(".box_left_qh a").click(function(){
+            location.href = window.location.href;
+        })
+        alertShow($(".fileclick"),$(".directbox em"),$("#directwrap"));
+        alertShow($(".edit_left"),$(".livelogintbox em,#upload_file1"),$("#livelogin"));
+        //删除置顶链接
+        $(".delrec").click(function(){
+            var oSel=window.confirm("您确定删除吗？")
+            var oFom=$(this).attr("former");
+            if(oSel){
+                $(this).attr("href",oFom)
+            }
+        });
+        //修改标题
+        var title="";
+        $(".addtitle").click(function(){
+            $(this).hide();
+            $(".title ul").show();
+            $(".title_text").addClass("ad");
+            $('.title_text').removeAttr("readonly");
+            title=$(".title_text").val();
+        })
+        $(".title .qx").click(function(){
+            $(".title_text").removeClass("ad");
+            $('.title_text').attr("readonly","readonly");
+            $(".title_text").val(title);
+            $(".title ul").hide();
+            $(".addtitle").show();
+        })
+        $(".title .qr").click(function(){
+            $(".title_text").removeClass("ad");
+            $('.title_text').attr("readonly","readonly");
+            $(".title ul").hide();
+            $(".addtitle").show();
+            $("#directtitle").val($(".title_text").val());
+            $("#modifTitle").submit();
+        })
+        //直播状态
+        var status = $("#status").val();
+        if(status == "1"){
+            $(".livestate div").removeClass("wkq").addClass("ykq");
+            $(".livestate p").text("直播已开启");
+        }
+        $(".livestate div").click(function(){
+            if($(this).hasClass("wkq")){
+                $(this).removeClass("wkq").addClass("ykq");
+                $(".livestate p").text("直播已开启");
+                $("#status").val("1");
+            }else{
+                $(this).removeClass("ykq").addClass("wkq");
+                $(".livestate p").text("直播未开启");
+                $("#status").val("2");
+            }
+            $("#modifState").submit();
+        })
+        //hover
+        $(".wkq,.ykq,.style span,.style li,.intro span,.links_qr,.edit_top span,.cwcg,.fb,.right_l_n .xg span,.fbnr_n .xg span,.fbnr_n .xg em,.addtitle,.right_l_n .xg em").hover(function(){
+            $(this).addClass("show");
+        },function(){
+            $(this).removeClass("show");
+        })
+        //style
+        $(".style dd li").click(function(){
+            var oText = $(this).text();
+            $(".style dd strong").text(oText);
+            $(".style ul").hide();
+        })
+        $(".xgs").live("click",function(){
+            $(".style ul").show();
+        })
+        var type="";
+        $(".style dt span").click(function(){
+            $(".k").addClass("xgs");
+            $(this).hide();
+            $(".style dt div").show();
+            type=$(".style dd strong").text();
+        })
+        $(".style .qx").click(function(){
+            $(".style dd div").removeClass("xgs");
+            $(".style dt div").hide();
+            $(".style dt span").show();
+            $(".style dd strong").text(type)
+        })
+        $(".style .qr").click(function(){
+            $(".style dd div").removeClass("xgs");
+            $(".style dt div").hide();
+            $(".style dt span").show();
+            $(".style .k #directtype").val($(".style dd strong").text());
+            $("#modifType").submit();
+        })
+        //简介
+        var intro = "";
+        $(".intro dt span").click(function(){
+            $(this).hide();
+            $(".intro dt div").show();
+            $(".intro textarea").removeAttr("readonly").addClass("show");
+            intro=$(".intro dd textarea").val();
+        })
+        $(".intro .qx").click(function(){
+            $(".intro dt div").hide();
+            $(".intro dt span").show();
+            $(".intro textarea").attr("readonly","readonly").removeClass("show");
+            $(".intro dd textarea").val(intro);
+        })
+        $(".intro .qr").click(function(){
+            $(".intro dt div").hide();
+            $(".intro dt span").show();
+            $(".intro textarea").attr("readonly","readonly").removeClass("show");
+            $(".intro dd #description").val($(".intro dd textarea").val());
+            $("#modifIntro").submit();
+        })
+        //关键字
+        var str = "";
+        str=$(".key dd textarea").val();
+        var a = str.split(",");
+        var oHtmls = "";
+        for(var i=0;i<a.length;i++){
+            oHtmls+="<span style='float:left;'>"+a[i]+"</span>";
+        }
+        $(".key dd div").html(oHtmls);
+        /*var arr = [];
+        for(var i=0;i<$(".key dd div span").length;i++){
+            var text = $(".key dd div span").eq(i).text();
+            arr[i]=text;
+        }
+        $(".key dd textarea").val(arr);*/
+        $(".key dt span").click(function(){
+            $(this).hide();
+            $(".key dt div").show();
+            $(".key dd div").hide();
+            $(".key dd textarea").show();
+        });
+        $(".key dt .qx").click(function(){
+            $(".key dt div").hide();
+            $(".key dt span").show();
+            $(".key dd textarea").hide();
+            $(".key dd div").show();
+        })
+        $(".key dt .qr").click(function(){
+            var oVal = $(".key dd textarea").val();
+            var arrs = oVal.split(",");
+            var oHtml="";
+            for(var i=0;i<arrs.length;i++){
+                oHtml+="<span style='float:left;'>"+arrs[i]+"</span>";
+            }
+            $(".key dd div").html(oHtml);
+            $(".key dt div").hide();
+            $(".key dt span").show();
+            $(".key dd textarea").hide();
+            $(".key dd div").show();
+            $("#tags").val($(".key dd textarea").val());
+            $("#modifTags").submit();
+        })
+        //添加置顶链接
+        $(".links_qr").click(function(){
+            if($(".txt input").val() != "" || $(".url input").val() != ""){
+                var oTxt = $(".txt input").val();
+                var oUrl = $(".url input").val();
+                $(".links ul").append("<li><a href="+oUrl+">"+oTxt+"</a></li>");
+            }
+            $("#addRecommend").submit();
+        })
+        //草稿箱、投递箱切换
+        $('.box_left_qh li').click(function(){
+            var Index = $('.box_left_qh li').index(this);
+            $('.box_left_qh li').eq(Index).addClass('show').siblings().removeClass('show');
+            $('.right_l_n').children("div").eq(Index).addClass('right_l_n_s').siblings().removeClass('right_l_n_s');
+            $('#scrollbar2').tinyscrollbar({ axis: 'y',size: 1059,sizethumb: 20});
+        });
+        $(".box_left_qh li:eq(0)").find("span").text($("#scrollbar1 li").length);
+        $(".box_left_qh li:eq(1)").find("span").text($("#scrollbar2 li").length);
+        $(".fbnr span").text($("#scrollbar3 li").length);
+
+        if($("#banner").val() != ""){
+            $(".title").css({"background":"url('"+$("#banner").val()+"') no-repeat"});
+        }
+        updateImages()//上传图片
+        function updateImages(){
+            $("#upfile").change(function(){
+                $(".file_text").val($("#upfile").val());
+            });
+            //上传执行数据相关
+            $("#upload_file").click(function(){
+                var objFile=document.getElementById("upfile");
+                if($("#upfile").val()!= "" && $("#feedback img").length<=2){
+                    $("#upimgs").submit();
+                    objFile.outerHTML=objFile.outerHTML.replace(/(value=\").+\"/i,"$1\"");
+                }else if($("#upfile").val()== ""){
+                    alert("请选择图片!");
+                    return
+                }
+            });
+            $("#exec_target").load(function(){
+                var oImg = $(window.frames["exec_target"].document.body).find("span").html();
+                var re=/(.+)(\..+)/;
+                var str=oImg.match(re);
+                var oSrc=str[1] +"1000x140"+str[2];
+                $(".title").css({"background":"url('"+oSrc+"') no-repeat"});
+                $("#banner").val(oSrc);
+                $("#modifBanner").submit();
+            });
+        }
+        updateImages1()//上传图片
+        function updateImages1(){
+            $("#upfile1").change(function(){
+                $(".file_text1").val($("#upfile1").val());
+            });
+            //上传执行数据相关
+            $("#upload_file1").click(function(){
+                var objFile=document.getElementById("upfile1")
+                if($("#upfile1").val()!= "" && $("#feedback img").length<=2){
+                    $("#upimgs1").submit();
+                    objFile.outerHTML=objFile.outerHTML.replace(/(value=\").+\"/i,"$1\"");
+
+                }else if($("#upfile1").val()== ""){
+                    alert("请选择图片!");
+                    return
+                }
+            });
+            $("#exec_target1").load(function(){
+                var oImg = $(window.frames["exec_target1"].document.body).find("span").html();
+                var re=/(.+)(\..+)/;
+                var str=oImg.match(re);
+                var oSrc1=str[1] +"154x105"+str[2];
+                $("#edit_left_img").attr("src",oSrc1);
+                $("#img1").val(oImg);
+            });
+        }
+        $(".fb,.cwcg").click(function(){
+            if($(".edit_con textarea").val() == "在这里添加你的内容..."){
+                $("#livetext").val("");
+            }else{
+                $("#livetext").val($(".edit_con textarea").val());
+            }
+            if($(this).attr("class") == "fb show"){
+                $("#livetype").val("1");
+            }else{
+                $("#livetype").val("2");
+            }
+            if($("#edit_left_img").attr("src") == "http://127.0.0.1:8080/image/edit/i11.png" && $(".exampleText").val() == "在这里添加你的内容..."){
+                alert("图片或文字不可为空")
+            }else{
+                if($(".edit_bottom").attr("modify") == "true"){
+                    $("#addLive").attr("action","/admin/modifyLive").submit();
+                }else{
+                    $("#addLive").attr("action","/admin/addLive").submit();
+                }
+            }
+        })
+        //修改直播内容1
+        $("#scrollbar3 .xg span,#scrollbar1 .xg span,#scrollbar2 .xg span").click(function(){
+            var oliveid=$(this).attr("lid");
+            var olivetext=$(this).parent().parent().find(".livetext").html();
+            $(".edit_con textarea").val("");
+            $(".edit_con textarea").val(olivetext);
+            $(".edit_bottom").attr("modify","true");
+            $("#addLive").append('<input type="hidden"  name="liveid" value="'+ oliveid +'" />');
+            //生成小图并append到修改区域
+            var oImgurl=$(this).parent().parent().find(".imgs").find("img").attr("src");
+            if(oImgurl!=""){
+                var re=/(.+)(\..+)/;
+                var str=oImgurl.match(re);
+                var oSrc=str[1] +"154x105"+str[2];
+                var oSrcdb=str[1]+str[2];
+                $("#edit_left_img").attr("src",oSrcdb);
+                $("#img1").val($(this).parent().parent().find(".imgs").attr("url"));
+            }
+        });
+        $("#scrollbar3 ul li,#scrollbar2 ul li,#scrollbar1 ul li").each(function(){
+            //var oImgurllength=$(this).find(".imgs").length;
+            var oImgurl=$(this).find(".imgs");
+            oImgurl.each(function(){
+                if($(this).attr("url")!=""){
+                    var re=/(.+)(\..+)/;
+                    var str=$(this).attr("url").match(re);
+                    var oSrc=str[1] +"312x161"+str[2];
+                    $(this).append('<img src="'+ oSrc +'" />');
+                }
+            });
+        });
+        //删除直播、草稿、投递
+        $(".delthislive").click(function(){
+            var oSel=window.confirm("您确定删除吗？")
+            var oFom=$(this).attr("former");
+            if(oSel){
+                $(this).attr("href",oFom)
+            }
+        });
+
+        function switchText()
+        {
+            if ($(this).val() == $(this).attr('title'))
+                $(this).val('').removeClass('exampleText');
+            else if ($.trim($(this).val()) == '')
+                $(this).addClass('exampleText').val($(this).attr('title'));
+        }
+        $('.edit_con textarea').each(function() {
+            if ($.trim($(this).val()) == '') $(this).val($(this).attr('title'));
+            if ($(this).val() == $(this).attr('title')) $(this).addClass('exampleText');
+        }).focus(switchText).blur(switchText);
+    })
+    $(window).load(function(){
+        $('#scrollbar1').tinyscrollbar({ axis: 'y',size: 1059,sizethumb: 20});
+        $('#scrollbar3').tinyscrollbar({ axis: 'y',size: 1059,sizethumb: 20});
+        $('#scrollbar2').tinyscrollbar({ axis: 'y',size: 1059,sizethumb: 20});
+    });
+</script>
+</html>

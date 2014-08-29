@@ -1,0 +1,90 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/index.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="container">
+            <div class="menu">
+                <p>
+                    <strong><a href="http://127.0.0.1:8080/search.do?keywords=<%=keywords%>">直 播</a></strong>
+                    <strong class="now">用 户</strong>
+                </p>
+            </div>
+            <div class="userlist">
+                <strong>搜索“<span id="kws" kws="<%=keywords%>"><%=keywords%></span>”相关用户</strong>
+                <div>
+                    <%searchuser.forEach(function(users){%>
+                    <dl><dt><img src="<%=users.face%>" alt="<%=users.nickname%>" /></dt><dd><%=users.nickname%></dd></dl>
+                    <%});%>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+
+
+<script type="text/javascript">
+    $(function(){
+        //hovereffect
+        $(".sub,.mydirect,.adddirect,.directbox li").hover(function(){
+            $(this).addClass("hover");
+        },function(){
+            $(this).removeClass("hover");
+        });
+
+        //新建直播弹出层
+        alertShow($(".adddirect"),$(".directbox em"));
+
+        //登录盒子
+        $(".sub").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:8080/login.do",
+                data: "email="+$("#email").val().toLowerCase()+"&password="+$("#password").val(),
+                success: function(user){
+                    if(user=="false"){
+                        alert("用户不存在或密码错误。")
+                    }else{
+                        $("#login-effect").animate({"top":"0"},300);
+                        $(".mymsg img,#head img").attr("src",user.face);
+                    }
+                }
+            });
+        });
+
+        //选择频道
+        $(".directbox i").click(function(){
+            $(".directbox ul").show(200);
+        });
+
+        $(".directbox li").click(function(){
+            $(".directbox i").html($(this).html());
+            $(".directbox ul").hide(200);
+        });
+
+        //处理特地位置全局关键词变红
+        var oKeywords=$("#kws").attr("kws")
+        $(".userlist dd").each(function(){
+            var str=$(this).text();
+            $(this).html(str.replace(eval("/"+oKeywords+"/g"),"<span>"+oKeywords+"</span>"))
+        });
+    });
+</script>
+</body>
+</html>

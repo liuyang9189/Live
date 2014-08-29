@@ -1,0 +1,302 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>直播台</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-CN" />
+    <meta name="keywords" content="#" />
+    <meta name="description" content="#" />
+    <meta name="author" content="#" />
+    <link href="/css/public.css" type="text/css" rel="stylesheet" />
+    <link href="/css/index.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.slides.min.js"></script>
+</head>
+<body>
+<div id="wrap">
+    <% include head %>
+    <div id="main">
+        <div class="hotbox">
+            <%-htmls.html%>
+            <!-- <div class="hotpics">
+                <div class="jieshao">
+                    <p></p>
+                </div>
+                <div id="slides">
+                    <img src="../image/index/example-slide-1.jpg" txt="1111111"/>
+                    <img src="../image/index/example-slide-2.jpg" txt="2222222"/>
+                    <img src="../image/index/example-slide-3.jpg" txt="3333333"/>
+                </div>
+            </div> -->
+            <div class="hotnews">
+                <ul>
+                    <li><a href="#">将触屏进行到底！台北宏碁新品发布会直播</a></li>
+                    <li><a href="#">将触屏进行到底！台北宏碁新品发布会直播</a></li>
+                    <li><a href="#">将触屏进行到底！台北宏碁新品发布会直播</a></li>
+                    <li><a href="#">将触屏进行到底！台北宏碁新品发布会直播</a></li>
+                </ul>
+
+
+                <div id="login-wrap">
+                    <% if(user){ %>
+                    <div class="mymsg">
+                        <dl><img src="<%=user.face%>" alt="<%=user.nickname%>" /><strong><%=user.nickname%></strong><dt>0赞</dt><dd><a href="http://127.0.0.1:8080/set">设置 ></a></dd></dl>
+                        <div><a href="http://127.0.0.1:8080/list/<%=user.pin%>/all/1" class="mydirect">我的直播</a><span class="adddirect">新建直播</span></div>
+                    </div>
+                    <% }else{ %>
+                    <div id="login-effect">
+                        <div class="mymsg">
+                            <dl><img src="#" alt="#" /><strong>##</strong><dt>0赞</dt><dd><a href="#">设置 ></a></dd></dl>
+                            <div><a href="#" class="mydirect">我的直播</a><span class="adddirect">新建直播</span></div>
+                        </div>
+                        <div class="login">
+                            <div><input type="text" class="txt" name="email" id="email" /><em>使用微博账户登录</em></div>
+                            <div><input type="password" class="txt" name="password" id="password" /><strong><input type="checkbox"  /></strong><i>记住我</i></div>
+                            <div><input type="text" class="txt" style="width:75px;" /><span><input type="submit" class="sub" value="&nbsp;" /></span><font><a href="http://127.0.0.1:8080/register/">注册</a> </font></div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="menu">
+                <ul>
+                    <li><a href="/q/1/">群乐频道</a></li>
+                    <li><a href="/pc/1/">笔记本/平板</a></li>
+                    <li><a href="/mobile/1/">移动互联</a></li>
+                    <li><a href="/cpu/1/">配件/显示器</a></li>
+                    <li><a href="/enterprise/1/">IT新闻</a></li>
+                    <li><a href="/digital/1/">数码影像</a></li>
+                    <li><a href="/gamelive/1/">游戏live秀</a></li>
+                    <li><a href="/hardware/1/">新品秀</a></li>
+                    <li><a href="/dh/1/">数字家电</a></li>
+                    <li><a href="/diy/1/">外设/深港</a></li>
+                </ul>
+            </div>
+            <div class="list">
+                <h2>最新直播</h2>
+                <%newdirects.forEach(function(direct){%>
+                <div class="news">
+                    <h4><em>正在直播</em><i>开始时间  <%=:direct.start_time | format:"yyyy-MM-dd"%></i></h4>
+                    <div>
+                        <span><a href="http://127.0.0.1:8080/<%=direct.mark%>/<%=direct._id%>.html"><img src="http://127.0.0.1:8080/image/index/default.png" alt="<%=direct.title%>" img="<%=direct.img%>" class="dimg"></a></span>
+                        <dl>
+                            <dt><a href="http://127.0.0.1:8080/<%=direct.mark%>/<%=direct._id%>.html"><%=direct.title%></a></dt>
+                            <dd>　　<%=direct.description%></dd>
+                            <strong>作者：<%=direct.creator%></strong>
+                        </dl>
+                    </div>
+                    <div class="interact">
+                        <span class="yz"><%=direct.praise%>赞</span>
+                        <div class="wb">
+                            <div class="position_fx_con">
+                                <a href="javascript:;" class="sina" title="新浪"></a>
+                                <a href="javascript:;" style="background-position:0 -20px;" class="qq" title="腾讯"></a>
+                                <a href="javascript:;" style="background-position:0 -40px;" class="renren" title="人人"></a>
+                                <div>
+                                    <a href="javascript:;" style="background-position:0 -60px;" title="空间" class="qqkj"></a>
+                                    <a href="javascript:;" style="background-position:0 -80px;" title="搜狐" class="souhu"></a>
+                                    <a href="javascript:;" style="background-position:0 -100px;" title="豆瓣" class="douban"></a>
+                                    <a href="javascript:;" style="background-position:0 -120px;" title="开心" class="kaixin"></a>
+                                </div>
+                                <p class="open"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%});%>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+<% include foot %>
+
+
+<div id="directwrap">
+    <div id="directbg">
+        <div class="directbox">
+            <em>取消</em>
+            <h3>新建直播</h3>
+            <div>
+                <form action="http://127.0.0.1:8080/newaddr.do" method="get" id="adddirect">
+                    <dl><dt>直播标题</dt><dd><input type="text" class="txt1 title" name="title" /></dd></dl>
+                    <dl><dt>关键字</dt><dd><input type="text" class="txt1 tags" name="tags" /></dd></dl>
+                    <dl style="padding:0;line-height:20px;overflow:hidden;"><dt style="height:20px;">&nbsp;</dt><dd style="line-height:20px;">用英文半角“,”分隔 如：直播台,天极</dd></dl>
+                    <dl><dt>内容介绍</dt><dd><textarea class="txt2 desc" name="description"></textarea></dd></dl>
+                    <dl><dt>选择频道</dt><dd>
+                    <span>
+                        <input type="hidden" name="type" id="seltype" value="群乐频道" />
+                        <input type="hidden" name="mark" id="selmark" value="q" />
+                        <% if(user){ %>
+                            <input type="hidden" name="pin" id="<%= user.pin %>" />
+                        <% }else{%>
+                            <input type="hidden" name="pin" id="" />
+                        <% }%>
+                        <i>群乐频道</i>
+                        <ul>
+                            <li mark="q">群乐频道</li>
+                            <li mark="pc">笔记本/平板</li>
+                            <li mark="mobile">移动互联</li>
+                            <li mark="cpu">配件/显示器</li>
+                            <li mark="enterprise">IT新闻</li>
+                            <li mark="digital">数码影像</li>
+                            <li mark="gamelive">游戏live秀</li>
+                            <li mark="hardware">新品秀</li>
+                            <li mark="dh">数字家电</li>
+                            <li mark="diy">外设/深港</li>
+                        </ul>
+                    </span>
+                    </dd></dl>
+                    <dl><input type="submit" class="subs" value="&nbsp;" /></dl>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+$(function(){
+    $(".open").click(function(){
+        if($(this).parent().parent().hasClass("show")){
+            $(this).parent().parent().removeClass("show");
+            $(this).parent().parent().animate({"width":"118px"},300);
+            $(this).parent().animate({"width":"114px"},300);
+            $(this).parent().find("div").animate({"width":"0px"},300);
+        }else{
+            $(this).parent().parent().addClass("show");
+            $(this).parent().parent().animate({"width":"255px"},300);
+            $(this).parent().animate({"width":"255px"},300);
+            $(this).parent().find("div").css({"height":"20px"}).animate({"width":"140px"},300);
+        }
+
+    })
+    //分享
+    $('.sina').click(function(){
+        var oParent = $(this).parent().parent().parent().parent();
+        window.open('http://v.t.sina.com.cn/share/share.php?title='+encodeURIComponent(oParent.find("dt").find("a").text())+'&url='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+'&pic='+oParent.find(".dimg").attr("src")+'&source=bookmark','_blank','width=450,height=400');
+    });
+    $('.qq').click(function(){
+        var oParent = $(this).parent().parent().parent().parent();
+        var _t = encodeURI(oParent.find("dt").find("a").text());var _url = encodeURIComponent(oParent.find("dt").find("a").attr("href"));var _appkey = encodeURI('');var _pic = oParent.find(".dimg").attr("src");var _site = '';var _u = 'http://v.t.qq.com/share/share.php?title='+_t+'&url='+_url+'&appkey='+_appkey+'&site='+_site+'&pic='+_pic;window.open( _u,'转播到腾讯微博', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no')
+    });
+    $('.renren').click(function(){
+        var oParent = $(this).parent().parent().parent().parent();
+        window.open('http://widget.renren.com/dialog/share?resourceUrl='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+"&srcUrl="+oParent.find(".dimg").attr("src")+"&title="+encodeURIComponent(oParent.find("dt").find("a").text())+'&description=');
+    });
+    $('.souhu').click(function(){
+        var oParent = $(this).parent().parent().parent().parent().parent();
+        window.open('http://t.sohu.com/third/post.jsp?&url='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+"&srcUrl="+oParent.find(".dimg").attr("src")+"&title="+encodeURIComponent(oParent.find("dt").find("a").text()));
+    });
+    $('.qqkj').click(function(){
+        var oParent = $(this).parent().parent().parent().parent().parent();
+        window.open('http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+"&srcUrl="+oParent.find(".dimg").attr("src")+"&title="+encodeURIComponent(oParent.find("dt").find("a").text()));
+    });
+    $('.douban').click(function(){
+        var oParent = $(this).parent().parent().parent().parent().parent();
+        window.open('http://www.douban.com/recommend/?url='+encodeURIComponent(oParent.find("dt").find("a").attr("href"))+"&srcUrl="+oParent.find(".dimg").attr("src")+"&title="+encodeURIComponent(oParent.find("dt").find("a").text()));
+    });
+    $('.kaixin').click(function(){
+        var oParent = $(this).parent().parent().parent().parent().parent();
+        window.open('http://www.kaixin001.com/repaste/share.php?rtitle=' + encodeURIComponent(oParent.find("dt").find("a").text())) + '&rurl=' + encodeURIComponent(oParent.find("dt").find("a").attr("href"));
+    });
+
+
+
+    //$(".hotnews").prepend($(".news").html());
+    //hovereffect
+    $(".sub,.mydirect,.adddirect,.directbox li,.slidesjs-previous,.slidesjs-next,.directbox .subs").hover(function(){
+        $(this).addClass("hover");
+    },function(){
+        $(this).removeClass("hover");
+    });
+
+    //新建直播弹出层
+    alertShow($(".adddirect"),$(".directbox em"),$("#directwrap"));
+
+    //登录盒子
+    $(".sub").click(function(){
+        $.ajax({
+            type: "POST",
+            url: "http://127.0.0.1:8080/login.do",
+            data: "email="+$("#email").val().toLowerCase()+"&password="+$("#password").val(),
+            success: function(user){
+                if(user=="user not found!" || user == "password error!" || user=="user not found!" &&  user == "password error!"){
+                    alert("用户名或密码错误！")
+                }else{
+                    //登录盒子效果
+                    $("#login-effect").animate({"top":"0"},300);
+                    $(".mymsg img").attr("src",user.face);
+                    $(".mymsg strong").html(user.nickname);
+                    $(".mydirect").attr("href","list/"+user.pin+"/all/1")
+                    //header登录效果
+                    $(".topmymsg").html("<img src='"+user.face+"' alt='"+user.nickname+"' /><b>"+user.nickname+"</b><a href='http://127.0.0.1:8080/set'>设置</a><a href='http://127.0.0.1:8080/message.do'>消息</a><a href='/logout.do'>退出</a>");
+                }
+            }
+        });
+    });
+
+    //选择频道
+    $(".directbox i").click(function(){
+        $(".directbox ul").show(200);
+    });
+
+    $(".directbox li").click(function(){
+        var thisTxt=$(this).text();
+        var thisMark=$(this).attr("mark");
+        $(".directbox i").text(thisTxt)
+        $("#seltype").val(thisTxt);
+        $("#selmark").val(thisMark);
+        $(".directbox ul").hide(200);
+    });
+
+    //分页处理
+    var iCurpage = $('.page').attr('curpage');
+    var iTotalNum = $('.page').attr('totalNum');
+    var iNowPage = $(".page li[page='"+iCurpage+"']")
+    iNowPage.addClass("show")
+    if(iCurpage > 5 ){
+        $(".page li").eq(parseFloat(iCurpage)-5).prevAll().hide();
+        $(".page li:first").show()
+    }
+    if(iCurpage< parseFloat(iTotalNum) - 5){
+        $(".page li").eq(parseFloat(iCurpage)+5).nextAll().hide();
+        $(".page li:last").show()
+    }
+
+    //焦点图
+    $('#slides').slidesjs({
+        width: 594,
+        height: 308,
+        pagination: {
+            effect: "fade"
+        },
+        effect: {
+            fade: {
+                speed: 400
+            }
+        },
+        callback:{
+            loaded: function(number) {
+                $(".jieshao p").text($("#slides img").eq(0).attr("txt"));
+            },
+            complete: function(number) {
+                var oNumber = number-1;
+                var oTxt = $("#slides img").eq(oNumber).attr("txt");
+                $(".jieshao p").text(oTxt);
+            }
+        },
+        play: {
+            auto:true
+        }
+    });
+});
+</script>
+</body>
+</html>
